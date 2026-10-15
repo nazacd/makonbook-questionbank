@@ -27,7 +27,10 @@ Open every image path with the Read tool. Read no other files.
    - `key_wrong`: you can prove the key fails AND exactly one other answer is correct. Put
      the proof in `proof`: the computation, or the grammar or logic rule, step by step. Put
      the right answer in `proposed_key`. "Another choice is better" or "the key is arguable"
-     is not proof; that is `ambiguous`.
+     is not proof; that is `ambiguous`. Proof is an arithmetic error, a choice that contradicts
+     the text or data, or a rule every style guide agrees on. When it rests on a convention
+     usage guides disagree about (for example, whether an element is restrictive), or the
+     solvers split without high confidence, choose `ambiguous`.
    - `ambiguous`: two choices are defensible, or the key is arguable. A teacher decides.
    - `broken`: the question as printed is defective, for example a missing or duplicate
      choice, a cropped figure, or data that contradicts the text.
@@ -36,8 +39,7 @@ Open every image path with the Read tool. Read no other files.
    for example `["17/2", "8.5"]`. List each value if several answers are correct. Use `null`
    to keep the bank's list.
 5. **`issues`:** the final list. Keep the true ones from `issues_so_far`, drop the false ones
-   (say which in `reason`), and add what you found. Severity: cosmetic, content or blocking.
-   Source: question or figure.
+   (say which in `reason`), and add what you found, in the issue format of `format.md`.
 6. **`proposed_fix`:** a minimal patch to the bank's question you are highly confident in,
    for a teacher to approve, for example `{"choices.D": "..."}` or `{"key": "D"}`. Otherwise
    use `null`.

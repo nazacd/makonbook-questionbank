@@ -39,7 +39,7 @@ Read no other files.
    `skill_hint` come from the bank and are usually right; fix them if the question says
    otherwise. `difficulty` is your estimate: `easy`, `medium` or `hard`, as on the real SAT.
 6. **`issues`:** only problems you notice in the question itself, not in the explanation.
-   Use the same kinds and severities as transcription. Usually this is empty.
+   Use the issue format in `format.md`. Usually this is empty.
 
 Reading and Writing:
 - Information and Ideas: Central Ideas and Details; Inferences; Command of Evidence (Textual);

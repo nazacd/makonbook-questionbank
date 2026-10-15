@@ -550,8 +550,9 @@ def v_transcribe(test, t) -> list[str]:
         fkeys.add(f["key"])
     if t.get("confidence") not in CONFIDENCE:
         errs.append(f"confidence {t.get('confidence')!r}")
-    if not str(t.get("stem") or "").strip():
-        errs.append("empty stem")
+    if not str(t.get("stem") or "").strip() and not any(
+            i.get("kind") == "missing_info" and i.get("severity") == "blocking" for i in t.get("issues") or []):
+        errs.append("empty stem without a blocking missing_info issue")
     texts = {"stem": t.get("stem")}
     if t.get("passage") is not None:
         texts["passage"] = t["passage"]

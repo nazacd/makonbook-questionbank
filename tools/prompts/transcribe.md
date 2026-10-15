@@ -26,16 +26,10 @@ the Read tool. Read no other files.
 6. **Confidence:** `high` if every character is certain. `medium` if a few symbols are unsure.
    `low` if the image is cropped, blurry or unreadable.
 
-**Issues:** only problems in the bank's question itself.
-- Kinds: typo, grammar, missing_choice, duplicate_choice, choice_formatting, unreadable_image,
-  image_text_mismatch, missing_info, off_format, other.
-- Severity:
-  - `cosmetic`: the meaning is unchanged.
-  - `content`: it could confuse a student or change an answer.
-  - `blocking`: the question cannot be answered as shown, for example cropped, with a
-    missing choice, or unreadable.
-- Source: `question` or `figure`.
-- Detail: one sentence that quotes the problem.
+7. **A question the bank doesn't have.** If there is no question text and no image, write
+   `stem: ""` (never a placeholder) and report a blocking `missing_info` issue.
+
+**Issues:** only problems in the bank's question itself, in the issue format of `format.md`.
 
 ## Output
 
