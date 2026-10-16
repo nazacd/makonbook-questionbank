@@ -22,7 +22,7 @@ You, the main session, are the coordinator.
 
 - Get the latest tools first: `git pull origin main`. Start a new session for each test, or
   pull again before the next one.
-- Run this main session on **Sonnet** (`/model sonnet`). It only coordinates; Opus does its
+- Run this main session on **Sonnet** (choose it in the model menu when starting the session). It only coordinates; Opus does its
   work as a subagent. On DAY2 an Opus main session was about 40% of the whole run's cost.
 - Work from the repository root. Run `pip install -q boto3 pillow` if they're missing.
 - The two CSV exports (Math and English) are attached to the first message. Find their paths.
