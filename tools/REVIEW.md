@@ -20,6 +20,8 @@ You, the main session, are the coordinator.
 
 ## Before you start
 
+- Run this main session on **Sonnet** (`/model sonnet`). It only coordinates; Opus does its
+  work as a subagent. On DAY2 an Opus main session was about 40% of the whole run's cost.
 - Work from the repository root. Run `pip install -q boto3 pillow` if they're missing.
 - The two CSV exports (Math and English) are attached to the first message. Find their paths.
 - R2 credentials are in the environment (`R2_*`). R2 is **read only**. Never print the
