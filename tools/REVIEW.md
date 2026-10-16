@@ -20,6 +20,8 @@ You, the main session, are the coordinator.
 
 ## Before you start
 
+- Get the latest tools first: `git pull origin main`. Start a new session for each test, or
+  pull again before the next one.
 - Run this main session on **Sonnet** (`/model sonnet`). It only coordinates; Opus does its
   work as a subagent. On DAY2 an Opus main session was about 40% of the whole run's cost.
 - Work from the repository root. Run `pip install -q boto3 pillow` if they're missing.
@@ -99,9 +101,10 @@ The command prints how many questions are flagged and why. Launch its batches (o
 
 ## When something fails
 
-- **`stage` refuses because an output is missing or invalid.** It lists the errors and the
-  batches to re-run. Re-run each listed batch: launch a new agent with the same prompt, plus
-  `Your previous output had these errors: <errors>`. Then run the command again.
+- **`stage` refuses because an output is missing or invalid.** It lists the batches to re-run,
+  each with a file holding its full error list. Re-run each listed batch: launch a new agent
+  with the same prompt, plus `Your previous output failed the check. Fix every error listed in
+  <error file>, keeping everything else.` Then run the command again.
 - **`finish` reports check errors.** It names the batch to re-run for each one. Re-run them
   the same way, then run `finish` again.
 - **Retries.** At most 2 re-runs per batch. If a batch still fails, write it in `notes.md`,

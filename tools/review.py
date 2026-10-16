@@ -501,16 +501,17 @@ def load_step(test: str, step: str) -> tuple[dict, list[str], list[str]]:
         if not out.exists():
             errs.append(f"{step} {batch}: no output")
             rerun.append(batch)
-            continue
+            continue  # no error file: just run the batch
         try:
             data = read_json(out)
         except json.JSONDecodeError as e:
-            errs.append(f"{step} {batch}: not valid JSON ({e})")
-            rerun.append(batch)
-            continue
+            data = f"{step} {batch}: not valid JSON ({e})"
         if not isinstance(data, list):
-            errs.append(f"{step} {batch}: not a JSON array")
+            msg = data if isinstance(data, str) else f"{step} {batch}: not a JSON array"
+            errs.append(msg)
             rerun.append(batch)
+            error_file(test, step, batch).parent.mkdir(parents=True, exist_ok=True)
+            error_file(test, step, batch).write_text(msg + "\n", encoding="utf-8")
             continue
         got = {}
         bad = []
@@ -524,11 +525,20 @@ def load_step(test: str, step: str) -> tuple[dict, list[str], list[str]]:
         missing = [q for q in qids if q not in got]
         if missing:
             bad.append(f"{step} {batch}: missing {', '.join(missing)}")
+        ef = error_file(test, step, batch)
         if bad:
             errs += bad
             rerun.append(batch)
+            ef.parent.mkdir(parents=True, exist_ok=True)
+            ef.write_text("\n".join(bad) + "\n", encoding="utf-8")
+        elif ef.exists():
+            ef.unlink()
         recs.update(got)
     return recs, errs, rerun
+
+
+def error_file(test: str, step: str, batch: str) -> Path:
+    return work(test) / "errors" / step / f"{batch}.txt"
 
 
 def v_transcribe(test, t) -> list[str]:
@@ -705,9 +715,12 @@ def require(test: str, *steps: str) -> dict:
         print("\n".join(errs[:40]))
         if len(errs) > 40:
             print(f"... {len(errs) - 40} more")
-        print("\nRe-run these batches (same prompt, plus the errors above), then run this command again:")
+        print("\nRe-run these batches, then run this command again. Each batch's full error list is in")
+        print("the file shown; add it to the re-run prompt:")
         for st, bs in rerun.items():
-            print(f"  {st}: {' '.join(bs)}")
+            for b in bs:
+                ef = error_file(test, st, b)
+                print(f"  {st} {b}" + (f": {ef.relative_to(ROOT)}" if ef.exists() else ": no output yet"))
         raise Fail("previous step incomplete")
     return got
 
