@@ -16,3 +16,8 @@ here is served to students.
 `python3 tools/review.py check DAY2` validates a folder.
 
 Keep this repository private: it holds the school's test content.
+
+Records carry the bank's original screenshots (`source.images`, R2 keys) for the
+editor panel. Tests reviewed before that was added get them with
+`python3 tools/review.py add-images . --math <math csv> --english <english csv>`
+(safe to run again: it only fills records that lack them).
