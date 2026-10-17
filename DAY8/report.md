@@ -1,0 +1,59 @@
+# DAY8 AI review
+
+Test ids DAY8: 98 questions. Models: transcribe sonnet, solve_a opus, solve_b sonnet, explain sonnet, adjudicate opus.
+
+## Counts
+
+| Subject | green | yellow | red | total |
+|---|---:|---:|---:|---:|
+| R&W | 47 | 6 | 1 | 54 |
+| Math | 38 | 5 | 1 | 44 |
+| **Total** | **85** | **11** | **2** | **98** |
+
+Verdicts: key_correct 96, key_wrong 1, broken 1. Adjudicated: 16.
+
+## Red: a teacher decides before publishing
+
+- **Math M2 #22 (csv 757)**: key_wrong. Key C → D. Each statement alone is side-side-angle (the 30 degree angle is opposite QR and TU), and an explicit counterexample shows it does not force similarity, so C is wrong and D is the key; the duplicate numbering issue was merged and the 'ambiguous' issue replaced by wrong_key.
+- **R&W M1 #11 (csv 279)**: broken. Key A is right (less adjustment to fit the database's categories means higher category consistency), but choices C and D are duplicates of each other, so the printed question is defective and a teacher needs to restore the original distractor; the duplicate issues_so_far entry was merged.
+
+## Yellow
+
+- solver medium: 10
+- transcription medium: 3
+- content: other: 1
+- solver disagrees with the key: 1
+
+## Solvers
+
+- solve_a (opus): disagrees with the bank key on 1, with the final key on 0; confidence high 96, medium 2, low 0.
+- solve_b (sonnet): disagrees with the bank key on 2, with the final key on 1; confidence high 87, medium 11, low 0.
+- Both disagree with the bank key: 1 (Math M2 #22 (csv 757)).
+- The two solvers disagree with each other: 1.
+
+## Transcription
+
+- Confidence: high 95, medium 3, low 0.
+- Question and choice images: 33; kept as figures 5 (geometry 2, graph 2, scatterplot 1), the rest turned into text.
+- Upscaled for the models: 31.
+
+## Explanations
+
+- Bank explanation: usable 69, minor_issue 24, wrong 5, mismatch 0, missing 0.
+- Final: drafted 47, kept from the bank 51.
+
+## Usage
+
+| Step | Model | Agents | Tokens | Est. API cost |
+|---|---|---:|---:|---:|
+| transcribe | sonnet | 10 | 571,075 | $1.60 |
+| explain | sonnet | 10 | 644,083 | $1.80 |
+| adjudicate | opus | 2 | 120,167 | $0.67 |
+| **Subagents** | | 22 | **1,335,325** | **$4.08** |
+
+Per question ≈ 13,625 tokens, ≈ $0.042 at API list prices (90/10 input/output split assumed; the main session is not included).
+
+## Notes from the session
+
+- Token counts for solve_a, solve_b and adj-1 were not logged.
+- math-m2-22: explainer concluded D vs bank key C (SSA/SAS wording); see report.
