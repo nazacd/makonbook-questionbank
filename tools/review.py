@@ -13,6 +13,9 @@ else, so the session that runs the review never has to read the data itself:
   finish T                          merge into T/questions.jsonl, write T/report.md
                                     and T/preview.html, then run check
   check PATH|T                      validate a questions.jsonl (exit 1 on errors)
+  add-images PATH... --math CSV --english CSV
+                                    add the bank's original screenshots (R2 keys) to records
+                                    reviewed before finish did it (source.images)
 
 Work files live in work/T/ (git-ignored); the results in T/.
 Needs Python 3.10+, Pillow and boto3 (for prep).
@@ -925,7 +928,7 @@ def build_record(test, q, tr, sa, sb, ex, adj) -> dict:
     rec = {
         "qid": q,
         "source": {"subject": s["subject"], "csv_id": s["csv_id"], "test_id": s["test_id"], "module": s["module"],
-                   "number": s["number"]},
+                   "number": s["number"], "images": {slot: i["key"] for slot, i in s["images"].items()}},
         "type": s["type"],
         "passage": passage, "stem": stem, "choices": choices,
         "figures": [{k: f[k] for k in ("key", "kind", "alt")} for f in tr["figures"]],
@@ -1335,6 +1338,39 @@ def cmd_check(a) -> None:
     print(f"check: ok ({p})")
 
 
+# ---------------------------------------------------------------- add-images
+
+def cmd_add_images(a) -> None:
+    """Records from before source.images existed get it from the CSVs."""
+    keys = {}
+    for subject, path in (("math", a.math), ("english", a.english)):
+        with open(path, encoding="utf-8") as f:
+            for r in csv.DictReader(f):
+                slots = {"question": val(r, "image")}
+                if subject == "math":
+                    slots.update({L: val(r, f"image_{L.lower()}") for L in LETTERS})
+                keys[(subject, int(val(r, "id") or 0))] = {k: v for k, v in slots.items() if v}
+    files = []
+    for target in a.paths:
+        p = Path(target)
+        files += [p] if p.is_file() else sorted(p.glob("*/questions.jsonl")) or [p / "questions.jsonl"]
+    for p in files:
+        lines = p.read_text(encoding="utf-8").splitlines()
+        out, added = [], 0
+        for line in lines:
+            if not line.strip():
+                continue
+            r = json.loads(line)
+            src = r.get("source") or {}
+            if "images" not in src and "qid" in r:
+                src["images"] = keys.get((src.get("subject"), src.get("csv_id")), {})
+                added += 1
+            out.append(json.dumps(r, ensure_ascii=False))
+        if added:
+            p.write_text("\n".join(out) + "\n", encoding="utf-8")
+        print(f"{p}: {added} records updated")
+
+
 # ---------------------------------------------------------------- main
 
 def main() -> None:
@@ -1362,6 +1398,11 @@ def main() -> None:
     p = sub.add_parser("check")
     p.add_argument("target", help="a test id, its folder, or a questions.jsonl")
     p.set_defaults(fn=cmd_check)
+    p = sub.add_parser("add-images")
+    p.add_argument("paths", nargs="+", help="test folders, questions.jsonl files, or the repository root")
+    p.add_argument("--math", required=True)
+    p.add_argument("--english", required=True)
+    p.set_defaults(fn=cmd_add_images)
     a = ap.parse_args()
     if a.cmd == "prep" and not (a.math or a.english):
         ap.error("prep needs --math and/or --english")
