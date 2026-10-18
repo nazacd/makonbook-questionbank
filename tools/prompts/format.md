@@ -2,10 +2,11 @@
 
 Every text field (passage, stem, choices, explanation) uses this format and nothing else:
 
-- Paragraphs separated by one blank line. A single line break stays a line break.
+- Paragraphs separated by one blank line. A single line break stays a line break. Each further
+  blank line is an empty line of space (teachers add these in the editor); reviews write one.
 - Math: inline `\( ... \)`, display `\[ ... \]` (LaTeX). Never `$`. A plain number or a money amount
   like $5 is plain text.
-- `*italic*`, `**bold**`, `<u>underlined</u>`. No other HTML.
+- `*italic*`, `**bold**`, `***bold italic***`, `<u>underlined</u>`. Italic may hold bold (`*a **b** c*`). No other HTML.
 - Lists: each line starts with `- `.
 - Tables: GitHub pipe tables. First row is the header, second row is the separator `|---|---|`.
 - Figures: `![short description](r2:<R2 key>)` on its own line, where it appears in the question.
