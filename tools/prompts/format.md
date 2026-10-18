@@ -2,7 +2,8 @@
 
 Every text field (passage, stem, choices, explanation) uses this format and nothing else:
 
-- Paragraphs separated by one blank line. A single line break stays a line break.
+- Paragraphs separated by one blank line. A single line break stays a line break. Each further
+  blank line is an empty line of space (teachers add these in the editor); reviews write one.
 - Math: inline `\( ... \)`, display `\[ ... \]` (LaTeX). Never `$`. A plain number or a money amount
   like $5 is plain text.
 - `*italic*`, `**bold**`, `***bold italic***`, `<u>underlined</u>`. Italic may hold bold (`*a **b** c*`). No other HTML.
