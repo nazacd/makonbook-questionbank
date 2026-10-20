@@ -96,7 +96,8 @@ The command prints how many questions are flagged and why. Launch its batches (o
    python3 tools/review.py finish T
    ```
 
-   This writes `T/questions.jsonl`, `T/report.md` and `T/preview.html` and checks them.
+   This writes `T/questions.jsonl`, `T/original.jsonl` (the bank's own text), `T/report.md` and
+   `T/preview.html` and checks them.
 4. Commit only the `T/` folder, with the message `Review T`, and push.
 
 ### 6. Fix

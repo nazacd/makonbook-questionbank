@@ -8,6 +8,8 @@ here is served to students.
 - `tools/review.py`: the mechanical steps (prep, staging, merge, check, report, preview).
   Tests: `cd tools && python3 -m unittest test_review.py`.
 - `tools/prompts/`: what each kind of subagent is told.
+- `DAY*/original.jsonl`: the bank's own text of each question (as SAT MAKON typed it), shown
+  to teachers next to the fix. `finish` writes it; `add-original` wrote it for earlier tests.
 - `figures/`: figures the fix step redrew (PNG). The API uploads them to MakonBook's bucket
   on import, under the same name.
 - `DAY2/`, `DAY3/`, …: one folder per reviewed test, with `questions.jsonl` (the import
