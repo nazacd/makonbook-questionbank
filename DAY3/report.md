@@ -65,3 +65,27 @@ Per question ≈ 31,193 tokens, ≈ $0.110 at API list prices (90/10 input/outpu
 - The script cut its error list off ("38 more"), so each re-run prompt got the errors that were visible for that batch, a note to check every issue in the batch, and a pointer to where the issue fields are defined (tools/prompts/transcribe.md). That pointer goes beyond the standard re-run prompt.
 - On re-run some agents rewrote their issues and dropped details: english-m1-b dropped the notes about unitalicised titles on questions 13 and 15. A teacher may still see small typo issues in english-m1-05 to 08, 12 to 17 and english-m2-11 to 16.
 - Transcription, solve and adjudication batches all passed on the first run. No R2 objects were missing.
+
+## Fixes
+
+Every question that isn't green, corrected for students; teachers approve or deny each fix.
+
+- **R&W M1 #8 (csv 840)** (yellow, restored, high): Restored the missing words "does the text" in the stem so it reads as the standard SAT main-purpose question.
+- **R&W M1 #16 (csv 777)** (yellow, corrected, high): Replaced the spaced hyphen in choice D with an em dash to match the dash after "that", and removed a stray mid-sentence line break in the passage.
+- **R&W M1 #17 (csv 789)** (yellow, corrected, high): Added the missing space before the blank after "he".
+- **R&W M1 #20 (csv 786)** (yellow, corrected, high): Fixed the transcription misspellings of "Hernandez-Lopez" in distractors A and C so they differ from the other choices only in punctuation.
+- **R&W M1 #21 (csv 785)** (yellow, no change, high): No change needed: one solver disagreed, but the question is clear and key D is right because C creates a comma splice.
+- **R&W M1 #22 (csv 784)** (yellow, corrected, high): Restored the missing spaces in choice A ("forthisreason," to "for this reason,").
+- **R&W M1 #25 (csv 781)** (yellow, corrected, high): Separated the run-together "ofthe" in choice C.
+- **R&W M1 #26 (csv 780)** (yellow, corrected, high): Fixed transcription slips: run-together words and "Sofo" in choice C (title italicized as in the notes), the missing period in B, and the stray period in D; the explanation now italicizes the title too.
+- **R&W M1 #27 (csv 779)** (yellow, corrected, high): Changed "TS0" (digit zero) to "TSO" in the stem to match the notes and choices; the notes match the screenshot.
+- **R&W M2 #3 (csv 794)** (yellow, no change, high): No change needed: the review flagged only solver uncertainty, but the text is clean and the "but" contrast with Peck, who "will always be remembered," makes "uncertain" the one logical answer.
+- **R&W M2 #4 (csv 795)** (red, restored, corrected, high): Restored the missing object and colon after the blank ("______ demand:") so the sentence parses, and fixed the misspelled distractor "monerizing" to "monetizing".
+- **R&W M2 #9 (csv 801)** (yellow, corrected, high): Corrected the name "Rubayer" to "Rubayet" to match Text 2 and added the missing space after "(Text 2)".
+- **R&W M2 #11 (csv 803)** (yellow, corrected, high): Fixed transcription typos in all four choices ("land- based", "IGE-1", "IGFS-groduction" and lowercase "some", "indogs").
+- **R&W M2 #12 (csv 805)** (yellow, corrected, high): Corrected "efectively" in the stem and the garbled "wher theas number" in choice C; the graph is clear and matches the text.
+- **R&W M2 #13 (csv 806)** (yellow, corrected, medium): Made choice A's opening quote mark curly to match its closing one and italicized the novel's title in all choices, as in the passage; content unchanged.
+- **R&W M2 #15 (csv 808)** (yellow, corrected, high): Fixed the typo "ni the wild" to "in the wild" in choice B; the question and key were otherwise fine.
+- **R&W M2 #16 (csv 809)** (red, corrected, invented, high): Changed "negatively" to "positively" in keyed choice C (the bank's wording contradicted the passage) and added the missing article; italicized species names in B.
+- **R&W M2 #19 (csv 812)** (red, corrected, high): Removed the stray semicolon after the blank that made keyed B read "spectrum:;" and removed the stray quote mark at the start of the stem.
+- **R&W M2 #20 (csv 813)** (red, corrected, high): Removed the stray semicolon after the blank that made keyed A read "wastes;;" and removed the stray quote mark at the start of the stem; the explanation still fits.
