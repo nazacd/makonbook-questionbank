@@ -63,7 +63,7 @@ class Fixes(unittest.TestCase):
         self.assertEqual(svg_errors(SVG), [])
         png = render_svg(SVG)
         self.assertTrue(png.startswith(b"\x89PNG"))
-        self.assertRegex(upload_key(png), r"^mb/[0-9a-f]{20}\.png$")
+        self.assertRegex(upload_key(png), r"^mb/[0-9a-f]{40}\.png$")
         for bad in ("<svg/>", "not xml", SVG.replace('width="300"', 'width="2000"'),
                     SVG.replace("<rect", '<image href="file:///etc/passwd"/><rect'),
                     SVG.replace("<rect", "<script>alert(1)</script><rect"),
