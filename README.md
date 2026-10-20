@@ -8,6 +8,8 @@ here is served to students.
 - `tools/review.py`: the mechanical steps (prep, staging, merge, check, report, preview).
   Tests: `cd tools && python3 -m unittest test_review.py`.
 - `tools/prompts/`: what each kind of subagent is told.
+- `figures/`: figures the fix step redrew (PNG). The API uploads them to MakonBook's bucket
+  on import, under the same name.
 - `DAY2/`, `DAY3/`, …: one folder per reviewed test, with `questions.jsonl` (the import
   input), `report.md` and `preview.html`.
 - `DAY1/`: the pilot. It uses an older record format, so re-run it with the current tools

@@ -13,6 +13,10 @@ else, so the session that runs the review never has to read the data itself:
   finish T                          merge into T/questions.jsonl, write T/report.md
                                     and T/preview.html, then run check
   check PATH|T                      validate a questions.jsonl (exit 1 on errors)
+  fix T                             after finish: stage the fix pass, a corrected version of
+                                    every question that isn't green (downloads its images)
+  fix-finish T                      check the fixes, draw their figures (figures/), add them
+                                    to T/questions.jsonl as each record's "fix"
   add-images PATH... --math CSV --english CSV
                                     add the bank's original screenshots (R2 keys) to records
                                     reviewed before finish did it (source.images)
@@ -45,11 +49,14 @@ MODELS = {
     "solve_b": "sonnet",
     "explain": "sonnet",
     "adjudicate": "opus",
+    "fix": "opus",
 }
 STEPS = list(MODELS)
-INPUT_OF = {"transcribe": "transcribe", "solve_a": "solve", "solve_b": "solve", "explain": "explain", "adjudicate": "adjudicate"}
+INPUT_OF = {"transcribe": "transcribe", "solve_a": "solve", "solve_b": "solve", "explain": "explain", "adjudicate": "adjudicate",
+            "fix": "fix"}
 BATCH_SIZE = {"math": 11, "english": 9}
 ADJ_BATCH = 6
+FIX_BATCH = 5
 MIN_WIDTH = 800  # narrower images are upscaled before a model reads them
 
 # API list prices per million tokens (input, output), for the report's estimate.
@@ -489,6 +496,9 @@ def batch_paths(test: str, step: str, batch: str) -> tuple[Path, Path]:
 
 
 def step_batches(test: str, step: str) -> dict[str, list[str]]:
+    if step == "fix":
+        p = work(test) / "fix.json"
+        return read_json(p)["batches"] if p.exists() else {}
     m = manifest(test)
     if step == "adjudicate":
         p = work(test) / "adjudicate.json"
@@ -681,7 +691,7 @@ def v_adjudicate(test, d) -> list[str]:
 
 
 VALIDATORS = {"transcribe": v_transcribe, "solve_a": v_solve, "solve_b": v_solve, "explain": v_explain,
-              "adjudicate": v_adjudicate}
+              "adjudicate": v_adjudicate, "fix": lambda test, f: v_fix(f, fix_inputs(test)[f["qid"]])}
 
 
 # ---------------------------------------------------------------- staging
@@ -846,7 +856,7 @@ def cmd_status(a) -> None:
     test = a.test
     m = manifest(test)
     print(f"{m['test']}: {m['counts']}")
-    for st in STEPS:
+    for st in STEPS[:-1]:  # the fix pass has its own commands
         bs = step_batches(test, st)
         if not bs:
             print(f"  {st:<11} not staged")
@@ -1306,6 +1316,7 @@ def check_record(r: dict) -> list[str]:
         errs.append(f"tags {tg['domain']!r} / {tg['skill']!r}")
     if tg["difficulty"] not in DIFFICULTY:
         errs.append(f"difficulty {tg['difficulty']!r}")
+    errs += fix_errors(r.get("fix"))
     risk, reasons = risk_of(r)
     if r["risk"] != risk or r["risk_reasons"] != reasons:
         errs.append(f"risk {r['risk']!r} but the rules give {risk!r}")
@@ -1371,6 +1382,268 @@ def cmd_add_images(a) -> None:
         print(f"{p}: {added} records updated")
 
 
+# ---------------------------------------------------------------- fix pass
+
+FIX_KINDS = ("corrected", "restored", "invented", "redrawn")
+UPLOAD_PREFIX = "mb/"  # MakonBook's own bucket: the API uploads T/figures/ there on import
+SVG_MAX = (800, 600)
+SVG_TAGS = {"svg", "g", "path", "line", "polyline", "polygon", "rect", "circle", "ellipse", "text", "tspan",
+            "defs", "marker", "title", "desc", "clipPath"}
+
+
+def records_of(test: str) -> list[dict]:
+    p = out_dir(test) / "questions.jsonl"
+    if not p.exists():
+        raise Fail(f"no {p.relative_to(ROOT)}: finish the review first")
+    return [json.loads(line) for line in p.read_text(encoding="utf-8").splitlines() if line.strip()]
+
+
+def write_records(test: str, records: list[dict]) -> None:
+    with open(out_dir(test) / "questions.jsonl", "w", encoding="utf-8") as f:
+        for r in records:
+            f.write(json.dumps(r, ensure_ascii=False) + "\n")
+
+
+def fix_inputs(test: str, _cache={}) -> dict:  # noqa: B006 - a per-run cache
+    if test not in _cache:
+        _cache[test] = {it["qid"]: it for b in step_batches(test, "fix")
+                        for it in read_json(batch_paths(test, "fix", b)[0])}
+    return _cache[test]
+
+
+def cmd_fix(a) -> None:
+    """Stage the fix pass for every question of a finished test that isn't green."""
+    test = a.test
+    records = records_of(test)
+    targets = [r for r in records if r["risk"] != "green"]
+    if not targets:
+        print("Every question is green: nothing to fix.")
+        return
+    client, bucket = r2_client()
+    w = work(test)
+    items = []
+    for r in targets:
+        originals = {}
+        for slot, key in (r["source"].get("images") or {}).items():
+            info = fetch_image(client, bucket, key, w)
+            if "error" not in info:
+                originals[slot] = info["path"]
+        figures = []
+        for f in r["figures"]:
+            info = fetch_image(client, bucket, f["key"], w)
+            figures.append({**f, "path": info.get("path") if "error" not in info else None})
+        adj = r.get("adjudication") or {}
+        items.append({
+            "qid": r["qid"], "subject": r["source"]["subject"], "type": r["type"],
+            "passage": r["passage"], "stem": r["stem"], "choices": r["choices"],
+            "key": r["key"], "accepted": r["accepted"], "figures": figures,
+            "explanation": r["explanation"]["text"],
+            "verdict": r["verdict"], "risk": r["risk"], "risk_reasons": r["risk_reasons"],
+            "issues": r["issues"], "adjudication": {k: adj.get(k) for k in ("reason", "proof")} if adj else None,
+            "proposed_fix": r.get("proposed_fix"), "original_images": originals,
+        })
+    batches = {}
+    for j in range(0, len(items), FIX_BATCH):
+        name = f"fix-{j // FIX_BATCH + 1}"
+        batches[name] = [it["qid"] for it in items[j:j + FIX_BATCH]]
+        write_json(batch_paths(test, "fix", name)[0], items[j:j + FIX_BATCH])
+    write_json(w / "fix.json", {"batches": batches})
+    c = Counter(r["risk"] for r in targets)
+    print(f"{len(targets)} of {len(records)} questions to fix (red {c['red']}, yellow {c['yellow']}).")
+    print_batches(test, ["fix"])
+
+
+def svg_errors(svg) -> list[str]:
+    """The fixer's figures: plain drawing only, nothing loaded or run."""
+    import xml.etree.ElementTree as ET
+
+    if not isinstance(svg, str) or not svg.strip():
+        return ["svg missing"]
+    try:
+        root = ET.fromstring(svg)
+    except ET.ParseError as e:
+        return [f"svg is not well-formed XML ({e})"]
+    errs = []
+    if root.tag != "{http://www.w3.org/2000/svg}svg":
+        errs.append("svg: the root must be <svg xmlns=\"http://www.w3.org/2000/svg\">")
+    if not root.get("viewBox"):
+        errs.append("svg: no viewBox")
+    for dim, most in zip(("width", "height"), SVG_MAX):
+        try:
+            if float(re.sub(r"px$", "", root.get(dim, ""))) > most:
+                errs.append(f"svg: {dim} over {most}")
+        except ValueError:
+            errs.append(f"svg: {dim} must be a number")
+    for el in root.iter():
+        tag = el.tag.split("}")[-1]
+        if tag not in SVG_TAGS:
+            errs.append(f"svg: <{tag}> is not allowed")
+        for attr, value in el.attrib.items():
+            name = attr.split("}")[-1]
+            if name == "href" and not value.startswith("#") or name.startswith("on") or name == "style" and "url(" in value:
+                errs.append(f"svg: attribute {name}={value[:30]!r} is not allowed")
+    return sorted(set(errs))
+
+
+def render_svg(svg: str) -> bytes:
+    """PNG bytes, twice the SVG's size, white background."""
+    import tempfile
+
+    try:
+        import resvg_py
+    except ImportError:
+        raise Fail("pip install resvg-py")
+    with tempfile.TemporaryDirectory() as empty:  # nothing to load from
+        return bytes(resvg_py.svg_to_bytes(svg_string=svg, zoom=2, background="#ffffff", resources_dir=empty))
+
+
+def upload_key(png: bytes) -> str:
+    """The key the API gives an uploaded image: mb/<first 20 hex of its SHA-256>.png."""
+    import hashlib
+
+    return f"{UPLOAD_PREFIX}{hashlib.sha256(png).hexdigest()[:20]}.png"
+
+
+def v_fix(f: dict, src: dict) -> list[str]:
+    errs = []
+    kinds, changes, figures = f.get("kinds"), f.get("changes"), f.get("figures") or []
+    if not isinstance(kinds, list) or set(kinds) - set(FIX_KINDS):
+        return [f"kinds: a list of {', '.join(FIX_KINDS)}"]
+    if not isinstance(changes, dict) or not isinstance(figures, list):
+        return ["changes must be an object and figures a list"]
+    allowed = {"passage", "stem", "explanation"} | (
+        {f"choices.{L}" for L in LETTERS} | {"key"} if src["type"] == "mcq" else {"accepted"})
+    if set(changes) - allowed:
+        errs.append(f"changes: unknown {sorted(set(changes) - allowed)} (allowed: {', '.join(sorted(allowed))})")
+    if not kinds and (changes or figures):
+        errs.append("changes without kinds")
+    if kinds and not changes and not figures:
+        errs.append("kinds without changes")
+    if ("redrawn" in kinds) != bool(figures):
+        errs.append("redrawn and figures go together")
+    names = set()
+    for k, fig in enumerate(figures):
+        if not isinstance(fig, dict) or not re.fullmatch(r"[a-z0-9_-]{1,20}", str(fig.get("name"))):
+            errs.append(f"figure {k}: name (a-z, 0-9, _ or -)")
+            continue
+        names.add(fig["name"])
+        if fig.get("kind") not in FIGURE_KINDS or not str(fig.get("alt") or "").strip():
+            errs.append(f"figure {fig['name']}: kind/alt")
+        errs += [f"figure {fig['name']}: {e}" for e in svg_errors(fig.get("svg"))]
+    # The fixed question, as students would get it.
+    fixed = {"passage": src["passage"], "stem": src["stem"], "choices": dict(src["choices"] or {}),
+             "key": src["key"], "accepted": src["accepted"], "explanation": src["explanation"]}
+    for field, value in changes.items():
+        if field.startswith("choices."):
+            fixed["choices"][field[8:]] = value
+        elif field in fixed:
+            fixed[field] = value
+    fkeys = {x["key"] for x in src["figures"]} | {f"new/{n}" for n in names}
+    texts = {"stem": fixed["stem"], "explanation": fixed["explanation"]}
+    if fixed["passage"] is not None:
+        texts["passage"] = fixed["passage"]
+    if src["type"] == "mcq":
+        texts.update({f"choices.{L}": fixed["choices"].get(L) for L in LETTERS})
+        if fixed["key"] not in LETTERS:
+            errs.append(f"key {fixed['key']!r}")
+    elif not isinstance(fixed["accepted"], list) or not fixed["accepted"] or any(parse_num(x) is None for x in fixed["accepted"]):
+        errs.append(f"accepted {fixed['accepted']!r}: a list of numbers")
+    used = set()
+    for where, t in texts.items():
+        if not isinstance(t, str) or not t.strip():
+            errs.append(f"{where}: empty")
+            continue
+        t = t.replace("](new:", "](r2:new/")
+        errs += content_errors(t, where, fkeys)
+        used |= refs(t)
+    if names - {u[4:] for u in used if u.startswith("new/")}:
+        errs.append(f"figures not placed: {sorted(names - {u[4:] for u in used})}")
+    if ("key" in changes or "accepted" in changes) and "explanation" not in changes:
+        errs.append("the answer changed: write a new explanation")
+    if "explanation" in changes and isinstance(changes["explanation"], str):
+        m = re.search(r"\*\*Answer:\*\*\s*(.+?)\s*$", changes["explanation"])
+        want = fixed["key"] if src["type"] == "mcq" else (fixed["accepted"] or [""])[0]
+        if not m or not matches(m.group(1).strip(" .*"), want, fixed["accepted"] or [], src["type"]):
+            errs.append(f"the new explanation must end **Answer:** {want}")
+    if f.get("needs_person") is not None and not str(f["needs_person"]).strip():
+        errs.append("needs_person: null or what a person must do")
+    for k in ("note", "check"):
+        if not str(f.get(k) or "").strip():
+            errs.append(f"no {k}")
+    if f.get("confidence") not in CONFIDENCE:
+        errs.append(f"confidence {f.get('confidence')!r}")
+    return errs
+
+
+def fix_errors(fix) -> list[str]:
+    """A merged record's fix, for check."""
+    if fix is None:
+        return []
+    errs = []
+    if not isinstance(fix, dict) or set(fix) - {"kinds", "changes", "figures", "needs_person", "note", "check",
+                                                 "confidence", "by"}:
+        return ["fix: unexpected shape"]
+    if set(fix.get("kinds") or []) - set(FIX_KINDS):
+        errs.append("fix: kinds")
+    for fig in fix.get("figures") or []:
+        if not str(fig.get("key", "")).startswith(UPLOAD_PREFIX) or fig.get("kind") not in FIGURE_KINDS or not fig.get("alt"):
+            errs.append(f"fix figure {fig.get('key')!r}: key/kind/alt")
+        elif not (ROOT / "figures" / Path(fig["key"]).name).exists():
+            errs.append(f"fix figure {fig['key']}: no figures/{Path(fig['key']).name} in the repository")
+    return errs
+
+
+def cmd_fix_finish(a) -> None:
+    test = a.test
+    if not step_batches(test, "fix"):
+        raise Fail(f"run: fix {test}")
+    fixes = require(test, "fix")["fix"]
+    records = records_of(test)
+    figdir = ROOT / "figures"
+    for r in records:
+        f = fixes.get(r["qid"])
+        if f is None:
+            continue
+        changes, figs = dict(f["changes"]), []
+        for fig in f.get("figures") or []:
+            png = render_svg(fig["svg"])
+            key = upload_key(png)
+            figdir.mkdir(exist_ok=True)
+            (figdir / Path(key).name).write_bytes(png)
+            figs.append({"key": key, "kind": fig["kind"], "alt": fig["alt"]})
+            for field, t in changes.items():
+                if isinstance(t, str):
+                    changes[field] = t.replace(f"](new:{fig['name']})", f"](r2:{key})")
+        r["fix"] = {"kinds": f["kinds"], "changes": changes, "figures": figs, "needs_person": f.get("needs_person"),
+                    "note": f["note"], "check": f["check"], "confidence": f["confidence"], "by": MODELS["fix"]}
+    write_records(test, records)
+    rp = out_dir(test) / "report.md"
+    if rp.exists():
+        text = rp.read_text(encoding="utf-8").split("\n## Fixes\n")[0].rstrip("\n")
+        rp.write_text(text + "\n\n" + fix_report(records), encoding="utf-8")
+    errs = check_records(records)
+    c = Counter(k for r in records if r.get("fix") for k in r["fix"]["kinds"] or ["none"])
+    person = sum(1 for r in records if (r.get("fix") or {}).get("needs_person"))
+    print(f"fixes: {len(fixes)} questions; " + ", ".join(f"{k} {n}" for k, n in c.most_common())
+          + f"; a person must step in on {person}")
+    if errs:
+        print("\n".join(errs))
+        raise Fail(f"{len(errs)} check errors")
+    print("check: ok")
+
+
+def fix_report(records) -> str:
+    L = ["## Fixes", "", "Every question that isn't green, corrected for students; teachers approve or deny each fix.", ""]
+    for r in records:
+        f = r.get("fix")
+        if not f:
+            continue
+        kinds = ", ".join(f["kinds"]) or "no change"
+        L.append(f"- **{label(r)}** ({r['risk']}, {kinds}, {f['confidence']}): {f['note']}"
+                 + (f" **A person must:** {f['needs_person']}" if f.get("needs_person") else ""))
+    return "\n".join(L) + "\n"
+
+
 # ---------------------------------------------------------------- main
 
 def main() -> None:
@@ -1398,6 +1671,12 @@ def main() -> None:
     p = sub.add_parser("check")
     p.add_argument("target", help="a test id, its folder, or a questions.jsonl")
     p.set_defaults(fn=cmd_check)
+    p = sub.add_parser("fix")
+    p.add_argument("test")
+    p.set_defaults(fn=cmd_fix)
+    p = sub.add_parser("fix-finish")
+    p.add_argument("test")
+    p.set_defaults(fn=cmd_fix_finish)
     p = sub.add_parser("add-images")
     p.add_argument("paths", nargs="+", help="test folders, questions.jsonl files, or the repository root")
     p.add_argument("--math", required=True)
