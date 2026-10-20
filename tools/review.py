@@ -1498,10 +1498,10 @@ def render_svg(svg: str) -> bytes:
 
 
 def upload_key(png: bytes) -> str:
-    """The key the API gives an uploaded image: mb/<first 20 hex of its SHA-256>.png."""
+    """The key the API gives an uploaded image: mb/<first 20 bytes of its SHA-256, in hex>.png."""
     import hashlib
 
-    return f"{UPLOAD_PREFIX}{hashlib.sha256(png).hexdigest()[:20]}.png"
+    return f"{UPLOAD_PREFIX}{hashlib.sha256(png).hexdigest()[:40]}.png"
 
 
 def v_fix(f: dict, src: dict) -> list[str]:
