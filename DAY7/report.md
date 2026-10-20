@@ -60,3 +60,24 @@ Per question ≈ 25,512 tokens, ≈ $0.092 at API list prices (90/10 input/outpu
 
 - explain math-m2-b failed the check once (skill/domain mismatch); re-run once, then passed.
 - math-m2-15 has no choices and no image in the bank (blocking missing_choice); needs a teacher.
+
+## Fixes
+
+Every question that isn't green, corrected for students; teachers approve or deny each fix.
+
+- **Math M1 #12 (csv 205)** (yellow, no change, high): No change needed: the transcription is clear and the key is right; the review flagged only medium transcription confidence.
+- **Math M1 #15 (csv 208)** (yellow, corrected, high): Replaced the stray quote marks with degree symbols and added the missing degree unit on angle D.
+- **Math M1 #22 (csv 215)** (yellow, corrected, high): Removed the stray space after the thousands comma in choices B and D so they read 4,116 and 1,728.
+- **Math M2 #4 (csv 219)** (yellow, corrected, medium): Changed "distinct positive numbers" to "distinct nonzero numbers" because the equation makes v negative when w and x are positive; the display fraction already makes the denominator 159x unambiguous.
+- **Math M2 #7 (csv 222)** (yellow, no change, high): No change needed: the solver was unsure, but the question is clear and the key is right.
+- **Math M2 #15 (csv 230)** (red, invented, high): All four choices were blank, so I wrote choices with the key value 8 at A and distractors from the factoring (the other root 9, the sum 17, the product 72).
+- **R&W M1 #13 (csv 227)** (yellow, corrected, high): Restored the missing article "A" at the start of choice D.
+- **R&W M1 #16 (csv 230)** (yellow, no change, high): No change needed: the transcription matches the original and the question is clear with key A correct.
+- **R&W M1 #21 (csv 235)** (yellow, corrected, high): Removed the stray quotation marks around the passage and italicized the journal title Science Advances.
+- **R&W M2 #6 (csv 247)** (yellow, corrected, high): The question already underlines both phrases the original marks and is clear; I only added the missing "**Answer:** C" line to the explanation.
+- **R&W M2 #8 (csv 249)** (yellow, no change, high): No change needed: the stray quotation marks the review flagged are not present in the current passage, and the question is clear with A as the only main idea.
+- **R&W M2 #11 (csv 252)** (yellow, no change, high): No change needed: the solver was unsure, but 'better explained' maps clearly to the traceability rating and the key is right.
+- **R&W M2 #12 (csv 253)** (yellow, no change, high): No change needed: the second solver's disagreement was an error; the question is clear and key B is right.
+- **R&W M2 #14 (csv 255)** (yellow, no change, high): No change needed: the question is clear and both solvers agree on key B.
+- **R&W M2 #19 (csv 260)** (yellow, no change, high): No change needed: the passage already uses a six-underscore blank with no stray quotation marks, and key B is right.
+- **R&W M2 #26 (csv 267)** (yellow, no change, high): No change needed: the solver was unsure, but the question is clear and key C is the only choice giving a specific example (water treatment) of what municipalities provide.
