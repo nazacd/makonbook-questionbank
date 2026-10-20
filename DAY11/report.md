@@ -52,3 +52,17 @@ None.
 | **Subagents** | | 43 | **2,544,376** | **$9.17** |
 
 Per question ≈ 25,963 tokens, ≈ $0.094 at API list prices (90/10 input/output split assumed; the main session is not included).
+
+## Fixes
+
+Every question that isn't green, corrected for students; teachers approve or deny each fix.
+
+- **Math M2 #22 (csv 373)** (yellow, no change, high): No change needed: the text matches the original screenshot, the question is clear, and key B is right; the solvers were only moderately sure.
+- **R&W M1 #11 (csv 442)** (yellow, restored, high): Restored the missing sentence with the blank that the choices complete, so students know what comparison they are finishing.
+- **R&W M1 #19 (csv 450)** (yellow, no change, high): No change needed: the text is clean and key A is the only conventional punctuation; the solver was only moderately sure.
+- **R&W M1 #21 (csv 452)** (yellow, no change, high): No change needed: the text is clean and key B is clearly the most logical transition; the solver was only moderately sure.
+- **R&W M1 #24 (csv 455)** (yellow, corrected, high): Replaced the incorrect semicolon before the dependent clause 'whereas red foxes have only thirty-four' with a comma in choice B.
+- **R&W M2 #8 (csv 466)** (yellow, no change, high): No change needed: the solvers were only moderately sure, but the paired texts and choices are clear and B is the only question both authors would answer the same way (no).
+- **R&W M2 #14 (csv 472)** (yellow, corrected, high): Italicized the novel title in all four choices to match the passage, and rewrote the explanation in the bank's format with a closing answer line.
+- **R&W M2 #19 (csv 475)** (yellow, no change, high): No change needed: one solver chose C, but the Italian festival is the example of her international reach, so A is the only logical and correctly punctuated choice, and the explanation already says so.
+- **R&W M2 #21 (csv 477)** (yellow, corrected, high): Italicized the album title *Loud Jazz*; the solvers' disagreement does not reflect a flaw, since B is the only logical and correctly punctuated choice.
