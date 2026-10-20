@@ -60,3 +60,18 @@ Per question ≈ 26,020 tokens, ≈ $0.094 at API list prices (90/10 input/outpu
 ## Notes from the session
 
 Worker restart and usage limit interrupted the session after DAY6 prep; transcribe was launched fresh, no re-runs. Explain agents launched as concurrency slots freed.
+
+## Fixes
+
+Every question that isn't green, corrected for students; teachers approve or deny each fix.
+
+- **Math M1 #18 (csv 800)** (yellow, no change, high): No change needed: the only issue is the screenshot's cropped "To", and our transcription already reads "To the nearest whole number" correctly.
+- **R&W M1 #3 (csv 1055)** (yellow, no change, high): No change needed: the text matches the screenshot, and the solver was only unsure. The question is clear and B is the only fit.
+- **R&W M1 #7 (csv 1059)** (yellow, corrected, medium): Corrected the typo "neutral dust" to "neural dust" in choice D. The ambiguity flag needs no rewrite because B is the only choice the text supports.
+- **R&W M1 #9 (csv 1061)** (yellow, corrected, high): Corrected grammar slips: added "a" in "Alleyne is a young monk", changed "has becomes" to "has become" in B, and added the missing period to A.
+- **R&W M1 #20 (csv 1072)** (yellow, corrected, high): Corrected the blank to six underscores and the typed "--" to real dashes in A and C. Rewrote the explanation, which had no answer line and did not address the distractors.
+- **R&W M1 #21 (csv 1073)** (red, invented, high): The last sentence credited the citizenship ruling to Perez v. Brownell, contradicting the previous sentence and making "Nevertheless" defensible; it now names Afroyim v. Rusk, so the sentence simply adds more about the same ruling.
+- **R&W M1 #26 (csv 1078)** (yellow, corrected, high): Fixed "fil" to "film" in C, restored the missing "A" at the start of D, and matched the notes' spelling and italics ("Agnès", *Cléo from 5 to 7*) in the stem and choices.
+- **R&W M2 #3 (csv 1082)** (red, invented, high): Replaced distractor B "clarified", which fit the text at least as well as the key, with "limited", so "revolutionized" is the only choice that matches a discovery that advanced understanding.
+- **R&W M2 #15 (csv 1094)** (yellow, no change, high): No change needed: the transcription matches the screenshot, and the solvers were only moderately sure, but the freeze-drying detail clearly supports storing crops, so the key is right.
+- **R&W M2 #24 (csv 1103)** (red, invented, medium): Replaced distractor D "In addition,", which was as defensible as the key, with "Instead,", so "Indeed," is the only transition that fits the elaboration of Gowda's political themes.

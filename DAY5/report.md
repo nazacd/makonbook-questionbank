@@ -66,3 +66,34 @@ Per question ≈ 27,416 tokens, ≈ $0.103 at API list prices (90/10 input/outpu
 ## Notes from the session
 
 Note: explain agents were launched after the 20-subagent concurrency limit freed slots (no re-runs).
+
+## Fixes
+
+Every question that isn't green, corrected for students; teachers approve or deny each fix.
+
+- **Math M1 #8 (csv 115)** (yellow, no change, high): No change needed: the choice tables are already transcribed in full as pipe tables (the screenshot crop only clipped the last rows of B and D, which are still readable), so nothing is cropped in our version.
+- **Math M1 #16 (csv 123)** (yellow, no change, high): The stem matches the original and the accepted list already holds every integer from -98 to -77, so the text needs no change; only non-integer answers in that range remain unaccepted. **A person must:** Grading: any number from -98 to -77 is correct (for example -80.5, from m = 11.5); the accepted list holds only the integers, so set the grader to accept the whole range -98 to -77 if it supports ranges.
+- **Math M1 #17 (csv 124)** (yellow, redrawn, high): Redrew the hand-sketched figure, where the label D looked like a Greek letter, as a clean diagram with DEF twice the size of ABC and the 50° angle at A.
+- **Math M1 #21 (csv 128)** (yellow, corrected, high): Replaced "the equation has more than one solution" (y = ... has infinitely many (x, y) solutions) with "the graph of the equation has more than one x-intercept" and removed a double space.
+- **Math M2 #2 (csv 131)** (yellow, corrected, high): Wrote the variable x in the question as math; the accepted list already holds both solutions, 49 and -25.
+- **Math M2 #14 (csv 143)** (yellow, corrected, invented, high): Reworded the stem to the standard SAT form (says the equation must be equivalent, fixes grammar) and rewrote choice C from 4096^{x+1} to 4096(4096)^x so the y-intercept 4096 really appears as a coefficient, removing the ambiguity the review found.
+- **Math M2 #21 (csv 150)** (yellow, no change, high): No change needed: our version already writes the original's "l" bars as proper absolute value bars in LaTeX, and the question and key are clear.
+- **R&W M1 #2 (csv 108)** (yellow, corrected, high): Removed the stray comma between "surveys ______ from 1940–2017" and "show", and closed up "United States– born" to "United States–born".
+- **R&W M1 #5 (csv 111)** (yellow, no change, high): No change needed: the review found no issues; the underlined sentence clearly mirrors the previous one (poor/rich, did not want/did want), and the key is right.
+- **R&W M1 #6 (csv 112)** (yellow, corrected, high): Changed "this bacteria" to "these bacteria" to fix the singular/plural mismatch; nothing else needed.
+- **R&W M1 #12 (csv 118)** (yellow, corrected, high): Corrected the author's name from "Cisnero's" to "Cisneros's" and italicized the novel's title; "cannot out" is Cisneros's own wording and stays.
+- **R&W M1 #13 (csv 119)** (red, corrected, high): Changed the key from D to C, as the review's key_wrong verdict found, and rewrote the explanation for key C.
+- **R&W M1 #14 (csv 120)** (yellow, corrected, medium): Added the missing opening quotation mark to D and replaced the en dashes with hyphens in A ("public-auction," "four-letter"), which also removes the stray space.
+- **R&W M1 #15 (csv 121)** (red, invented, high): Added a sentence stating the geologists' conclusion the stem refers to (a sharp rise in seismic activity just before the eruption), so the stem has a referent and only key C supports it; the figure is clear and stays.
+- **R&W M1 #16 (csv 122)** (yellow, corrected, high): Rewrote the first sentence so "who" refers to the female characters rather than the plays, changed "hard–biting" to "hard-biting," and italicized the play titles; the meaning is unchanged.
+- **R&W M1 #18 (csv 124)** (red, corrected, invented, high): Rewrote A so it claims only what the text states (her yard, not the whole neighborhood) and replaced B and D, which the text partly supported, with distractors the text contradicts; also fixed the em dashes in "sun-golden" and "witch-woman" and italicized the story title.
+- **R&W M1 #20 (csv 126)** (red, corrected, invented, high): Fixed the missing "and" and the "Boylyn" misspelling, and replaced A and C with clear conventions errors (a wrong possessive; a comma before restrictive "that") so B is the only standard choice.
+- **R&W M1 #22 (csv 128)** (red, invented, high): Replaced D (a dash, which can also join two independent clauses) with an ungrammatical relative clause so the semicolon in A is the only correct choice.
+- **R&W M2 #4 (csv 138)** (yellow, corrected, high): Added the missing final period; the question and key were already sound.
+- **R&W M2 #6 (csv 137)** (yellow, corrected, high): Fixed "like" to "little," "Davies" to "Davis," "Bliss" to "Bess," the missing possessive apostrophe, and italicized the album and opera titles.
+- **R&W M2 #7 (csv 140)** (yellow, corrected, high): Fixed transcription slips the review found (missing "is", "migration" for "mitigation", "Moraexella", lowercase choice A), italicized the species names, and rewrote the explanation because it quoted the "migration" error.
+- **R&W M2 #8 (csv 141)** (red, corrected, restored, high): Key B is already in our version; restored the garbled author names, added the missing "respondents" and "that" in the comparison, and made "researcher’s" plural to match "their" and the multiple researchers. **A person must:** Confirm the researchers' names: the garbled "Mike Moran, Daniel" was restored as "Mika R. Moran, Daniel A. Rodríguez" (authors of the Latin American park-use study); if unsure, use "Mika R. Moran and colleagues".
+- **R&W M2 #18 (csv 151)** (yellow, no change, high): No change needed: one solver chose "rising", but the series "is ..., ______ ..., and then dips" clearly needs the finite present-tense verb "rises", and the key and current explanation are right.
+- **R&W M2 #20 (csv 153)** (red, corrected, high): Key A is already in our version; restored the second editor's surname ("Debra Gwartney’s"), italicized the book title, and updated the explanation that quoted the title.
+- **R&W M2 #21 (csv 154)** (red, corrected, high): Key A is already in our version; fixed "architect" to "architects" to agree with "their", and hyphenated "Nineteenth-century" and "plant- and animal-inspired".
+- **R&W M2 #27 (csv 160)** (yellow, corrected, restored, high): Fixed the misplaced periods (".1" and ".4" now read 1 and 4), removed the stray "1", fixed choice C's missing article and "less harder", and restored the standard SAT notes intro so "the student" and "the notes" in the stem have a referent.
