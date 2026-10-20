@@ -9,6 +9,7 @@ Writing questions) for the teachers' review queue.
 | Solve | Opus and Sonnet subagents | Two blind solves, without the key |
 | Explain | Sonnet subagents | Check the bank's explanation, write new ones, tag the question |
 | Adjudicate | Opus subagents | Decide only the questions the script flags |
+| Fix | Opus subagents | Write a corrected version of every question that isn't green |
 | Everything else | `tools/review.py` | Picks rows, downloads images, compares answers, merges, checks, writes the report and preview |
 
 You, the main session, are the coordinator.
@@ -24,7 +25,7 @@ You, the main session, are the coordinator.
   pull again before the next one.
 - Run this main session on **Sonnet** (choose it in the model menu when starting the session). It only coordinates; Opus does its
   work as a subagent. On DAY2 an Opus main session was about 40% of the whole run's cost.
-- Work from the repository root. Run `pip install -q boto3 pillow` if they're missing.
+- Work from the repository root. Run `pip install -q boto3 pillow resvg-py` if they're missing.
 - The two CSV exports (Math and English) are attached to the first message. Find their paths.
 - R2 credentials are in the environment (`R2_*`). R2 is **read only**. Never print the
   credentials or put them in a file.
@@ -97,7 +98,36 @@ The command prints how many questions are flagged and why. Launch its batches (o
 
    This writes `T/questions.jsonl`, `T/report.md` and `T/preview.html` and checks them.
 4. Commit only the `T/` folder, with the message `Review T`, and push.
-5. Reply with the summary line `finish` printed and the red count.
+
+### 6. Fix
+
+Every question that isn't green gets a corrected version for teachers to approve or deny.
+
+```
+python3 tools/review.py fix T
+```
+
+Launch the batches it prints (opus), all in one message, with this prompt:
+
+> Read tools/prompts/fix.md and follow it exactly. Batch: `<batch>`. Input: `<input path>`.
+> Output: `<output path>`.
+
+Log their tokens (`log-usage T fix/fix-1=...`), then run:
+
+```
+python3 tools/review.py fix-finish T
+```
+
+It checks every fix, draws the redrawn figures into `figures/`, and adds each fix to
+`T/questions.jsonl`. If it lists batches to re-run, re-run them as in "When something fails",
+then run `fix-finish` again. Commit `T/` and `figures/` with the message `Fix T`, and push.
+
+Reply with the summary lines `finish` and `fix-finish` printed.
+
+## Fixing a test reviewed before the fix step existed
+
+Run step 6 alone for it: `fix T`, the agents, `fix-finish T`, commit `Fix T`. Nothing else
+changes. The tests are independent; do them one after another.
 
 ## When something fails
 
@@ -132,3 +162,5 @@ The command prints how many questions are flagged and why. Launch its batches (o
   - **green:** everything else.
 - **The bank key only changes on `key_wrong` with written proof.** Even then the question is
   red, so a teacher confirms it.
+- **Fixes never replace the reviewed question.** They sit beside it (`fix` in each record), so
+  teachers see the original and the fixed version side by side and approve or deny.
