@@ -63,3 +63,22 @@ Per question ≈ 25,146 tokens, ≈ $0.091 at API list prices (90/10 input/outpu
 - Only 20 subagents can run at once, so the 10 explain batches were launched as solve agents finished.
 - prep reported 1 problem in the source rows (see report.md if it affects a question).
 - No batch needed a re-run.
+
+## Fixes
+
+Every question that isn't green, corrected for students; teachers approve or deny each fix.
+
+- **Math M1 #3 (csv 47)** (yellow, no change, high): No change needed: the question is clear and key D is right; the second solver simply mis-added 25 + 24.
+- **Math M1 #8 (csv 53)** (yellow, corrected, high): Fixed the typo "values of a" to "values of x" (and set x and y in math); the choice tables match the original screenshots exactly.
+- **Math M1 #22 (csv 67)** (yellow, no change, high): No change needed: g(x) = x/m + 21 reads unambiguously as (x/m) + 21, and all four correct values are already accepted.
+- **Math M2 #10 (csv 95)** (red, restored, high): As printed, b was undetermined (y = 0, a = 27/5 works for any b); restored the standard condition "the system has infinitely many solutions" that the key and explanation assume, and rewrote the explanation to match.
+- **Math M2 #15 (csv 100)** (red, corrected, restored, medium): Defined the missing a as the leading coefficient in f(x) = a(x - 2)^2 + 10 (the reading the key requires), fixed the grammar ("graphs", "parabolas", "y-intercepts") and set the math in LaTeX; explanation updated to drop the guess about a.
+- **Math M2 #17 (csv 102)** (yellow, corrected, invented, high): Fixed the grammar and changed "One of x-intercept" to "The other x-intercept" so c can only be 11, and dropped -5 from the accepted answers.
+- **Math M2 #18 (csv 103)** (red, invented, high): The original prints cx/3 as the last term, which leaves no constant term to match 168; changed it to c/3 so the identity holds and the key 1464 works, and removed the explanation's note about the misprint.
+- **R&W M1 #14 (csv 68)** (yellow, corrected, high): Replaced the hyphen in "English-one" with an em dash; the question and key are otherwise fine.
+- **R&W M1 #21 (csv 75)** (yellow, no change, high): No change needed: the solver was unsure, but the blank's antecedent is the plural "the artworks", so the question is clear and the key A is right.
+- **R&W M1 #24 (csv 78)** (yellow, corrected, high): Fixed "mezzo- soprano", restored the em dashes around the "from ... to ..." aside, and italicized the Italian terms.
+- **R&W M2 #6 (csv 87)** (yellow, no change, high): No change needed: the solvers were only moderately sure, but the question is clear and B is the only choice that challenges the underlined claim that the honor is well known among tourists.
+- **R&W M2 #14 (csv 759)** (yellow, corrected, high): Restored the missing opening article "A" at the start of every choice; the content and key are unchanged.
+- **R&W M2 #15 (csv 758)** (red, corrected, invented, medium): Replaced the stem borrowed from the fish-vortex question with the table-completion stem, added the blank, fixed "si" to "is", and wrote new choices C and D (C was a duplicate of B, D came from another question) using the table's other species so only B fits.
+- **R&W M2 #27 (csv 106)** (yellow, corrected, high): Restored the missing opening word "A" in choices A and B; the meaning and key are unchanged.
