@@ -2,7 +2,7 @@
 
 import unittest
 
-from review import content_errors, matches, parse_num, render_svg, same_number, split_accepted, svg_errors, upload_key, v_fix
+from review import content_errors, matches, original_of, parse_num, render_svg, same_number, split_accepted, svg_errors, upload_key, v_fix
 
 
 class Numbers(unittest.TestCase):
@@ -94,6 +94,15 @@ class Fixes(unittest.TestCase):
             self.assertTrue(v_fix(f, MCQ), f)
         self.assertEqual(v_fix(fix(kinds=["corrected"], changes={"key": "C", "explanation": "Now C.\n\n**Answer:** C"}),
                                MCQ), [])
+
+
+class Original(unittest.TestCase):
+    def test_shapes(self):
+        row = {"passage": "", "question": "If $x=2$, what is $x+1$?", "a": "3", "b": "4", "c": "", "d": "", "answer": "a"}
+        self.assertEqual(original_of(row), {"passage": None, "question": "If $x=2$, what is $x+1$?",
+                                            "choices": {"A": "3", "B": "4", "C": "", "D": ""}, "answer": "a"})
+        src = {"passage": "P", "question": "", "choices": None, "bank_answer_raw": "17/2"}  # a grid-in's source file
+        self.assertEqual(original_of(src), {"passage": "P", "question": "", "choices": None, "answer": "17/2"})
 
 
 if __name__ == "__main__":

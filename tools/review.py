@@ -20,6 +20,9 @@ else, so the session that runs the review never has to read the data itself:
   add-images PATH... --math CSV --english CSV
                                     add the bank's original screenshots (R2 keys) to records
                                     reviewed before finish did it (source.images)
+  add-original PATH... --math CSV --english CSV
+                                    write T/original.jsonl, the bank's own text of each question
+                                    (finish writes it for new tests), for the teachers' comparison
 
 Work files live in work/T/ (git-ignored); the results in T/.
 Needs Python 3.10+, Pillow and boto3 (for prep).
@@ -983,6 +986,7 @@ def cmd_finish(a) -> None:
     with open(od / "questions.jsonl", "w", encoding="utf-8") as f:
         for r in records:
             f.write(json.dumps(r, ensure_ascii=False) + "\n")
+    write_original(od, [{"qid": q["qid"], **original_of(source(test, q["qid"]))} for q in m["questions"]])
     (od / "report.md").write_text(report(test, m, records), encoding="utf-8")
     (od / "preview.html").write_text(preview(test, records), encoding="utf-8")
     errs = check_records(records, m)
@@ -1644,6 +1648,51 @@ def fix_report(records) -> str:
     return "\n".join(L) + "\n"
 
 
+# ---------------------------------------------------------------- the bank's own text
+
+def original_of(row: dict) -> dict:
+    """The bank's text of a question, as SAT MAKON typed it: plain text, $ for math in Math,
+    a few HTML tags in R&W. Its screenshots are source.images in the record."""
+    if isinstance(row.get("choices"), dict):  # a review's source file
+        choices = {L: row["choices"].get(L) or "" for L in LETTERS}
+    else:  # a CSV row
+        choices = {L: row.get(L.lower()) or "" for L in LETTERS}
+    return {"passage": row.get("passage") or None, "question": row.get("question") or "",
+            "choices": choices if any(choices.values()) else None,
+            "answer": row.get("answer") or row.get("bank_answer_raw") or ""}
+
+
+def write_original(od: Path, items: list[dict]) -> None:
+    with open(od / "original.jsonl", "w", encoding="utf-8") as f:
+        for it in items:
+            f.write(json.dumps(it, ensure_ascii=False) + "\n")
+
+
+def cmd_add_original(a) -> None:
+    rows = {}
+    for subject, path in (("math", a.math), ("english", a.english)):
+        with open(path, encoding="utf-8") as f:
+            for r in csv.DictReader(f):
+                rows[(subject, int(val(r, "id") or 0))] = r
+    files = []
+    for target in a.paths:
+        p = Path(target)
+        files += [p] if p.is_file() else sorted(p.glob("*/questions.jsonl")) or [p / "questions.jsonl"]
+    for p in files:
+        items, missing = [], []
+        for line in p.read_text(encoding="utf-8").splitlines():
+            if not line.strip():
+                continue
+            r = json.loads(line)
+            row = rows.get((r["source"]["subject"], r["source"]["csv_id"]))
+            if row is None:
+                missing.append(r["qid"])
+                continue
+            items.append({"qid": r["qid"], **original_of(row)})
+        write_original(p.parent, items)
+        print(f"{p.parent.name}: {len(items)} questions" + (f"; not in the CSVs: {', '.join(missing)}" if missing else ""))
+
+
 # ---------------------------------------------------------------- main
 
 def main() -> None:
@@ -1677,6 +1726,11 @@ def main() -> None:
     p = sub.add_parser("fix-finish")
     p.add_argument("test")
     p.set_defaults(fn=cmd_fix_finish)
+    p = sub.add_parser("add-original")
+    p.add_argument("paths", nargs="+", help="test folders, questions.jsonl files, or the repository root")
+    p.add_argument("--math", required=True)
+    p.add_argument("--english", required=True)
+    p.set_defaults(fn=cmd_add_original)
     p = sub.add_parser("add-images")
     p.add_argument("paths", nargs="+", help="test folders, questions.jsonl files, or the repository root")
     p.add_argument("--math", required=True)
