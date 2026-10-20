@@ -56,3 +56,19 @@ Verdicts: key_correct 95, ambiguous 2, broken 1. Adjudicated: 15.
 | **Subagents** | | 43 | **2,508,867** | **$9.07** |
 
 Per question ≈ 25,600 tokens, ≈ $0.093 at API list prices (90/10 input/output split assumed; the main session is not included).
+
+## Fixes
+
+Every question that isn't green, corrected for students; teachers approve or deny each fix.
+
+- **Math M1 #3 (csv 154)** (red, invented, corrected, high): Replaced choice D (t <= 90, also true for every recorded temperature) with t >= 90 so only A is true, and fixed the stray space in "( °F)".
+- **Math M1 #8 (csv 159)** (red, redrawn, invented, medium): The photo was too distorted to tell slope 5 (key A) from slope 6 (choice B), and the bank explanation argued B; redrew line n through (-1, 0), (0, 5) and (1, 10) so slope 5 is exact and key A stands, and rewrote the explanation to match. **A person must:** A teacher should confirm the redrawn graph against a clean copy of the source: the original photo is skewed and its line could be read as slope 5 or 6; it was redrawn with slope 5 to match key A.
+- **Math M1 #12 (csv 661)** (yellow, corrected, high): Wrote the condition d > 5/9c as d > (5/9)c so it cannot be read as 5/(9c); choices C and D already put the whole expression under the radical, which is what the original intends.
+- **Math M2 #21 (csv 192)** (yellow, no change, high): No change needed: the transcription matches the original and the key is right; the second solver's choice A does not satisfy the equation.
+- **Math M2 #22 (csv 193)** (yellow, no change, high): No change needed: the figure is clear, the stem matches it, and the reasoning confirms key B.
+- **R&W M1 #5 (csv 165)** (yellow, corrected, high): Replaced the hyphen and spaced dash around "up to 97 kilometers per hour (km/hr)" with em dashes, and added the missing article to choices A and C so all four choices fit "largely ______ of the fact".
+- **R&W M1 #12 (csv 172)** (red, corrected, invented, high): Key A named Allentown-Bethlehem, whose delay fell from about 40 to about 34 hours, so A now names Beaumont, Texas, which rose from about 18 to 32 while staying below New York City; also fixed "200" to "2000" in D. **A person must:** Optional: the graph legend reads "New York City; New York" and "Allentown-Bethlehem; Pennsylvania" with semicolons instead of commas. The bar values cannot be read exactly enough to redraw the graph.
+- **R&W M1 #14 (csv 174)** (yellow, no change, high): No change needed: the solver was unsure, but the question is clear, and key A follows from birds spreading more seeds from abundant non-native plants.
+- **R&W M1 #18 (csv 178)** (yellow, corrected, high): Removed the stray quote mark at the start of the stem, made the dashes around the example list matching em dashes, and fixed the OCR slip "Katle" to "Katie".
+- **R&W M2 #24 (csv 211)** (yellow, corrected, high): Added the missing space between the blank and "volcanologists"; otherwise the question is clear and key D is right.
+- **R&W M2 #25 (csv 212)** (yellow, no change, high): No change needed: the review flagged only solver uncertainty, but the passage and choices are clean and key D is right.
