@@ -4,17 +4,17 @@ Source: SAT MAKON's `sat_vocabularyword.csv` (1,250 rows, all active, exported 2
 
 ## Summary
 
-- **1,250 rows in, 1,224 words out**, in 50 lists (25 duplicates and 1 row that is not a word removed; see below).
-- **Words:** 237 words fixed: 163 capital letter, 37 leading article, 41 PDF ligature, 1 wrong word, 4 broken character (some words had two fixes). Every fix is in the table below. The words themselves are SAT MAKON's.
-- **Definitions:** 1,187 kept as SAT MAKON wrote them, 37 rewritten (table below). In 196 of the kept ones, PDF ligature characters (ﬁ ﬂ ﬀ ﬃ ﬄ) were replaced by plain letters; the wording is unchanged.
-- **Examples:** SAT MAKON's file has none, so all 1,224 are new: one sentence each, using the word itself or a simple inflection, with no names of real people.
+- **1,250 rows in, 1,220 words out**, in 50 lists (25 duplicates and 5 rows that are not vocabulary removed; see below).
+- **Words:** 233 words fixed: 159 capital letter, 37 leading article, 41 PDF ligature, 1 wrong word, 4 broken character (some words had two fixes). Every fix is in the table below. The words themselves are SAT MAKON's.
+- **Definitions:** 1,185 kept as SAT MAKON wrote them, 35 rewritten (table below). In 196 of the kept ones, PDF ligature characters (ﬁ ﬂ ﬀ ﬃ ﬄ) were replaced by plain letters; the wording is unchanged.
+- **Examples:** SAT MAKON's file has none, so all 1,220 are new: one sentence each, using the word itself or a simple inflection, with no names of real people.
 - **Part of speech:** added for every word, as its definition uses it. A participle that the definition treats as a verb form ("overshadowed by: made less important…") is a verb; one it treats as a description ("cherished: greatly valued and loved") is an adjective. A word with a preposition after it takes the part of speech of the word ("skepticism toward": noun).
 
 ## Lists
 
 SAT MAKON's file groups the words into 50 units of 25 (`unit_id` 159–208), and `id` follows the same order. Each unit is one list, in the same order and named after its position: `unit_id` 159 is `sat-unit-1`, "SAT Words: Unit 1", up to `unit_id` 208, `sat-unit-50`, "SAT Words: Unit 50". Within a list, words are in the file's order (by `id`).
 
-Lists that lost a word to the removals below: Unit 12 (24), Unit 20 (23), Unit 26 (24), Unit 29 (24), Unit 30 (23), Unit 34 (24), Unit 35 (24), Unit 36 (23), Unit 48 (24), Unit 50 (11). All others have 25 words.
+Lists that lost a word to the removals below: Unit 12 (24), Unit 20 (23), Unit 22 (24), Unit 26 (24), Unit 29 (23), Unit 30 (23), Unit 34 (24), Unit 35 (24), Unit 36 (22), Unit 47 (24), Unit 48 (24), Unit 50 (11). All others have 25 words.
 
 ## Word fixes
 
@@ -152,7 +152,6 @@ A preposition after a word ("skepticism toward", "adept at") is kept: the SAT te
 | Unit 22 | 3072 | Running to | running to | capital letter |
 | Unit 22 | 3073 | an acceptable | acceptable | leading article |
 | Unit 22 | 3074 | Teach | teach | capital letter |
-| Unit 22 | 3077 | Get his mother to accept | get his mother to accept | capital letter |
 | Unit 23 | 3082 | Follows | follows | capital letter |
 | Unit 23 | 3083 | a disconcerting | disconcerting | leading article |
 | Unit 23 | 3095 | Scratchy | scratchy | capital letter |
@@ -179,7 +178,6 @@ A preposition after a word ("skepticism toward", "adept at") is kept: the SAT te
 | Unit 29 | 3231 | exempliﬁcations | exemplifications | PDF ligature |
 | Unit 29 | 3233 | Carefully | carefully | capital letter |
 | Unit 29 | 3238 | an ineﬀectual | ineffectual | PDF ligature; leading article |
-| Unit 29 | 3240 | Get his mother to reunite with | get his mother to reunite with | capital letter |
 | Unit 29 | 3243 | an overtly | overtly | leading article |
 | Unit 29 | 3245 | Possible | possible | capital letter |
 | Unit 29 | 3246 | ﬂuctuations in | fluctuations in | PDF ligature |
@@ -213,7 +211,6 @@ A preposition after a word ("skepticism toward", "adept at") is kept: the SAT te
 | Unit 36 | 3411 | Finishing | finishing | capital letter |
 | Unit 36 | 3414 | Select | select | capital letter |
 | Unit 36 | 3419 | Unequivocal | unequivocal | capital letter |
-| Unit 36 | 3421 | Get his mother to match | get his mother to match | capital letter |
 | Unit 37 | 3430 | Amount | amount | capital letter |
 | Unit 37 | 3431 | Gentle | gentle | capital letter |
 | Unit 37 | 3436 | Identiﬁed | identified | PDF ligature; capital letter |
@@ -265,7 +262,6 @@ A preposition after a word ("skepticism toward", "adept at") is kept: the SAT te
 | Unit 46 | 3678 | Obvious | obvious | capital letter |
 | Unit 47 | 3679 | Energetic | energetic | capital letter |
 | Unit 47 | 3687 | Managing | managing | capital letter |
-| Unit 47 | 3694 | Get his mother to apologize for | get his mother to apologize for | capital letter |
 | Unit 47 | 3699 | Estimated | estimated | capital letter |
 
 ## Removed
@@ -304,17 +300,16 @@ A word that appears twice keeps its first entry. Compared after the fixes above,
 
 Unit 50 repeats 14 of Unit 49's words, in the same order and with the same definitions (ids 3754–3767 repeat 3740–3753).
 
-### Not a word
+### Not vocabulary
 
+- Unit 22, id 3077: An answer choice from a reading question, not vocabulary. The row: "Get his mother to accept"
+- Unit 29, id 3240: An answer choice from a reading question, not vocabulary. The row: "Get his mother to reunite with"
 - Unit 36, id 3420: The word field holds a whole question sentence with a blank instead of a word, and at 113 characters it is over the 100 limit. Its definition ("providing evidence; demonstrating; showing") points to *demonstrating*, which is already in Unit 35 (id 3396). The row: "David de Santana proved this idea wrong by \_\_\_\_\_\_ that there are in fact three distinct species of electric eels."
+- Unit 36, id 3421: An answer choice from a reading question, not vocabulary. The row: "Get his mother to match"
+- Unit 47, id 3694: An answer choice from a reading question, not vocabulary. The row: "Get his mother to apologize for"
 
 ## For SAT MAKON to look at
 
-- These four entries are answer choices from a reading question, not vocabulary. They are kept as SAT MAKON wrote them (first letter lower-cased), since SAT MAKON's words are kept. Consider replacing each with its verb (accept, reunite with, match, apologize for) or removing it:
-  - Unit 22, id 3077: "Get his mother to accept"
-  - Unit 29, id 3240: "Get his mother to reunite with"
-  - Unit 36, id 3421: "Get his mother to match"
-  - Unit 47, id 3694: "Get his mother to apologize for"
 - The same word is in the list both alone and in a longer entry, usually with a preposition. Both are kept: they are different entries in SAT MAKON's file, not duplicates. Merge them if you prefer one card per word:
 
   | Word | List | Longer entry | List |
@@ -386,7 +381,6 @@ SAT MAKON's definitions use one style: a short definition, then synonyms, separa
 | Unit 33 | highlight | to emphasize; emphasize; underscore | to draw attention to something; emphasize; underscore | "emphasize" was listed twice |
 | Unit 35 | borrows | takes and uses something temporarily; loans; takes | takes and uses something from another source, such as an idea; takes; adopts | "loans" means the opposite (lends) |
 | Unit 35 | representative | typical of a group; typical; example | typical of a larger group; typical; characteristic | the synonym "example" is a noun, but the word is an adjective |
-| Unit 36 | get his mother to match | to have her equal or correspond; pair; correspond | to persuade his mother to equal something, such as his mood or effort; make her keep pace | "to have her equal or correspond" was unclear |
 | Unit 36 | reliably | dependably; dependably; consistently | in a way that can be trusted or depended on; dependably; consistently | "dependably" was listed twice |
 | Unit 38 | inconspicuousness | not easily seen; invisibility; subtlety | the quality of not being easily noticed; invisibility; subtlety | defined an adjective ("not easily seen"), but the word is a noun |
 | Unit 39 | selecting | choosing; picking; choosing | carefully choosing from a group; picking; choosing | "choosing" was listed twice |
@@ -398,6 +392,5 @@ SAT MAKON's definitions use one style: a short definition, then synonyms, separa
 | Unit 44 | enhancement | improvement; improvement; augmentation | something that makes a thing better or more valuable; improvement; upgrade | "improvement" was listed twice |
 | Unit 44 | learned | acquired knowledge; educated; knowledgeable | having a lot of knowledge from long study; educated; scholarly | mixed the verb ("acquired knowledge") with adjective synonyms |
 | Unit 44 | react to | to respond to; respond to; answer | to act or feel a certain way because of something; respond to; answer | "respond to" was listed twice |
-| Unit 47 | get his mother to apologize for | to make her say sorry; make her admit fault; make her apologize | to persuade his mother to say she is sorry for something; make her admit fault | used the word itself ("make her apologize") as a synonym |
 
 Every other definition is SAT MAKON's, word for word (apart from the ligature characters mentioned in the summary).
