@@ -10,6 +10,8 @@ Source: SAT MAKON's `sat_vocabularyword.csv` (1,250 rows, all active, exported 2
 - **Examples:** SAT MAKON's file has none, so all 1,220 are new: one sentence each, using the word itself or a simple inflection, with no names of real people.
 - **Part of speech:** added for every word, as its definition uses it. A participle that the definition treats as a verb form ("overshadowed by: made less important…") is a verb; one it treats as a description ("cherished: greatly valued and loved") is an adjective. A word with a preposition after it takes the part of speech of the word ("skepticism toward": noun).
 
+- **Pictures:** 30 words have one (see Pictures below); the others have no `image` field.
+
 ## Lists
 
 SAT MAKON's file groups the words into 50 units of 25 (`unit_id` 159–208), and `id` follows the same order. Each unit is one list, in the same order and named after its position: `unit_id` 159 is `sat-unit-1`, "SAT Words: Unit 1", up to `unit_id` 208, `sat-unit-50`, "SAT Words: Unit 50". Within a list, words are in the file's order (by `id`).
@@ -350,6 +352,43 @@ Unit 50 repeats 14 of Unit 49's words, in the same order and with the same defin
   | reveal | Unit 4 | reveal about | Unit 48 |
   | skeptical | Unit 25 | skeptical of | Unit 48 |
   | compelling | Unit 18 | compelling evidence | Unit 48 |
+
+## Pictures
+
+30 words, picked as the easiest to show in a picture, have an `image`: an 800×800 PNG in `vocab/images/` named after the word. They are flat illustrations drawn for this list (not photos and not from SAT MAKON), with no text in them, so the picture shows the meaning and the app shows the word.
+
+| List | Word | Picture |
+|---|---|---|
+| Unit 2 | depleted | `depleted.png` |
+| Unit 4 | conspicuous | `conspicuous.png` |
+| Unit 7 | amplify | `amplify.png` |
+| Unit 9 | hoard | `hoard.png` |
+| Unit 9 | dormant | `dormant.png` |
+| Unit 11 | magnify | `magnify.png` |
+| Unit 11 | interdependent | `interdependent.png` |
+| Unit 13 | fluctuate | `fluctuate.png` |
+| Unit 13 | accumulate | `accumulate.png` |
+| Unit 17 | dissolve | `dissolve.png` |
+| Unit 17 | fragile | `fragile.png` |
+| Unit 18 | transparent | `transparent.png` |
+| Unit 19 | abundant | `abundant.png` |
+| Unit 20 | homogeneous | `homogeneous.png` |
+| Unit 20 | hibernation | `hibernation.png` |
+| Unit 20 | diverge | `diverge.png` |
+| Unit 21 | isolate | `isolate.png` |
+| Unit 24 | obstructed | `obstructed.png` |
+| Unit 25 | multiplying | `multiplying.png` |
+| Unit 27 | heterogeneous | `heterogeneous.png` |
+| Unit 28 | constrict | `constrict.png` |
+| Unit 31 | erratic | `erratic.png` |
+| Unit 33 | immense | `immense.png` |
+| Unit 36 | converge | `converge.png` |
+| Unit 38 | meager | `meager.png` |
+| Unit 40 | dispersed | `dispersed.png` |
+| Unit 46 | tranquil | `tranquil.png` |
+| Unit 47 | intersect | `intersect.png` |
+| Unit 50 | withstand | `withstand.png` |
+| Unit 50 | ephemeral | `ephemeral.png` |
 
 ## Definitions rewritten
 
