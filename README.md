@@ -19,6 +19,8 @@ here is served to students.
 
 `python3 tools/review.py check DAY2` validates a folder.
 
+`vocab/` is SAT MAKON's vocabulary list for MakonBook's import: `words.jsonl` (one word per line), `CHANGES.md` (every change to SAT MAKON's file), pictures in `images/`, and picture prompts in `image-prompts/`. `python3 tools/check_vocab.py` validates it; `tools/vocab_drawings/` draws the pictures (see its README).
+
 Keep this repository private: it holds the school's test content.
 
 Records carry the bank's original screenshots (`source.images`, R2 keys) for the

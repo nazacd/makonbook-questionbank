@@ -2,6 +2,8 @@
 
 500 ready-to-paste prompts for Gemini (or any image generator), one per word, for the words that are easiest to show in a picture: about 10 per unit, so every list has pictures. Each prompt names the word, gives its meaning, describes one scene, and asks for the same flat illustration style with no text in the picture.
 
+Claude can also draw them, in the style of the first 30 pictures: see [tools/vocab_drawings/README.md](../../tools/vocab_drawings/README.md). The steps below are for making them in the Gemini app instead.
+
 | Page | Prompts |
 |---|---|
 | [Units 1–10](units-01-10.md) | 100 |
