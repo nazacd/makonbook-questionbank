@@ -10,7 +10,7 @@ Source: SAT MAKON's `sat_vocabularyword.csv` (1,250 rows, all active, exported 2
 - **Examples:** SAT MAKON's file has none, so all 1,220 are new: one sentence each, using the word itself or a simple inflection, with no names of real people.
 - **Part of speech:** added for every word, as its definition uses it. A participle that the definition treats as a verb form ("overshadowed by: made less important…") is a verb; one it treats as a description ("cherished: greatly valued and loved") is an adjective. A word with a preposition after it takes the part of speech of the word ("skepticism toward": noun).
 
-- **Pictures:** 30 words have one (see Pictures below); the others have no `image` field.
+- **Pictures:** 80 words have one (see Pictures below); the others have no `image` field.
 
 ## Lists
 
@@ -355,12 +355,62 @@ Unit 50 repeats 14 of Unit 49's words, in the same order and with the same defin
 
 ## Pictures
 
-30 words, picked as the easiest to show in a picture, have an `image`: an 800×800 PNG in `vocab/images/` named after the word. They are flat illustrations drawn for this list (not photos and not from SAT MAKON), with no text in them, so the picture shows the meaning and the app shows the word.
+80 words have an `image`: an 800×800 PNG in `vocab/images/` named after the word. The first 30 were picked as the easiest to show in a picture; the next 50 are the first 50 words of `vocab/image-prompts/prompts.jsonl`, in study order, that had none. They are flat illustrations drawn for this list (not photos and not from SAT MAKON), with no text in them, so the picture shows the meaning and the app shows the word.
 
 | List | Word | Picture |
 |---|---|---|
+| Unit 1 | skepticism toward | `skepticism-toward.png` |
+| Unit 1 | careful | `careful.png` |
+| Unit 1 | assistance | `assistance.png` |
+| Unit 1 | scrutinize | `scrutinize.png` |
+| Unit 1 | restricted | `restricted.png` |
+| Unit 1 | cherished | `cherished.png` |
+| Unit 1 | enthusiasm for | `enthusiasm-for.png` |
+| Unit 1 | publicity | `publicity.png` |
+| Unit 1 | overshadowed by | `overshadowed-by.png` |
+| Unit 1 | surprise at | `surprise-at.png` |
+| Unit 2 | vague | `vague.png` |
+| Unit 2 | struggling | `struggling.png` |
+| Unit 2 | disorganized | `disorganized.png` |
+| Unit 2 | nurture | `nurture.png` |
+| Unit 2 | advice | `advice.png` |
 | Unit 2 | depleted | `depleted.png` |
+| Unit 2 | inspect | `inspect.png` |
+| Unit 2 | lift | `lift.png` |
+| Unit 2 | overlooked | `overlooked.png` |
+| Unit 2 | evidence | `evidence.png` |
+| Unit 3 | buttress | `buttress.png` |
+| Unit 3 | profusion of | `profusion-of.png` |
+| Unit 3 | emulate | `emulate.png` |
+| Unit 3 | oddity | `oddity.png` |
+| Unit 3 | collaborators | `collaborators.png` |
+| Unit 3 | secretive | `secretive.png` |
+| Unit 3 | tenderly | `tenderly.png` |
+| Unit 3 | decorations | `decorations.png` |
+| Unit 3 | replicate | `replicate.png` |
+| Unit 3 | abandon | `abandon.png` |
+| Unit 4 | ornamental | `ornamental.png` |
+| Unit 4 | attract | `attract.png` |
+| Unit 4 | imitation | `imitation.png` |
+| Unit 4 | refusing | `refusing.png` |
+| Unit 4 | reveal | `reveal.png` |
+| Unit 4 | mimicked | `mimicked.png` |
+| Unit 4 | anomaly | `anomaly.png` |
+| Unit 4 | reciprocates | `reciprocates.png` |
+| Unit 4 | acclaim | `acclaim.png` |
 | Unit 4 | conspicuous | `conspicuous.png` |
+| Unit 5 | recognize | `recognize.png` |
+| Unit 5 | stretching toward | `stretching-toward.png` |
+| Unit 5 | partnership | `partnership.png` |
+| Unit 5 | thrive | `thrive.png` |
+| Unit 5 | rapid | `rapid.png` |
+| Unit 5 | surpassed by | `surpassed-by.png` |
+| Unit 5 | abruptly | `abruptly.png` |
+| Unit 5 | accomplishment | `accomplishment.png` |
+| Unit 5 | incomplete | `incomplete.png` |
+| Unit 5 | achievements | `achievements.png` |
+| Unit 6 | observant | `observant.png` |
+| Unit 6 | content | `content.png` |
 | Unit 7 | amplify | `amplify.png` |
 | Unit 9 | hoard | `hoard.png` |
 | Unit 9 | dormant | `dormant.png` |
