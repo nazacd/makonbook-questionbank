@@ -6,7 +6,7 @@ The figures and small shapes (person, face, limb, ...) come from batch_02.py.
 import math
 import random
 
-from batch_02 import SKIN, heart, limb, person, shadow, sheep, sparkle, star
+from batch_02 import SKIN, heart, limb, paper, person, shadow, sheep, sparkle, star
 from common import INK, arrow, bush, carrow, f, pine, svg
 
 
@@ -395,30 +395,33 @@ def praised():
 
 
 def improvise():
-    rnd = random.Random(3)
-    b = ['<rect y="300" width="400" height="100" fill="#6a994e"/>',
-         '<ellipse cx="120" cy="40" rx="140" ry="40" fill="#8d99ae"/><ellipse cx="320" cy="50" rx="120" ry="34" fill="#adb5bd"/>']
-    for _ in range(40):
-        x, y = rnd.uniform(0, 400), rnd.uniform(70, 290)
-        b.append(f'<line x1="{f(x)}" y1="{f(y)}" x2="{f(x - 5)}" y2="{f(y + 14)}" stroke="#457b9d" stroke-width="2.5" '
-                 'stroke-linecap="round"/>')
-    b += [# two trees and the branch tied between them
-          '<rect x="30" y="120" width="22" height="190" fill="#7f5539"/>', bush(41, 110, 46),
-          '<rect x="268" y="130" width="20" height="180" fill="#7f5539"/>', bush(278, 120, 42),
-          '<line x1="40" y1="190" x2="280" y2="190" stroke="#6f4518" stroke-width="10" stroke-linecap="round"/>',
-          # the tarp thrown over it
-          '<polygon points="60,190 260,190 300,320 20,320" fill="#4895ef"/>',
-          '<polygon points="60,190 260,190 220,320 100,320" fill="#457b9d"/>',
-          '<polygon points="120,320 160,236 200,320" fill="#264653" opacity=".7"/>',
-          '<path d="M20 320 L4 340 M300 320 L318 340" stroke="#adb5bd" stroke-width="3"/>',
-          '<rect x="0" y="336" width="8" height="14" fill="#7f5539"/><rect x="314" y="336" width="8" height="14" '
-          'fill="#7f5539"/>',
-          '<path d="M300 320 Q330 300 346 250" fill="none" stroke="#adb5bd" stroke-width="3"/>',
-          shadow(350, 344, 30),
-          person(352, 342, .82, SKIN[1], "#e76f51", "#264653", "#5c4033", "cap", mood="shut",
-                 larm=((-26, -16), (-14, -40)), rarm=((12, 40), (16, 74)),
-                 brows="M-14 -190 L-3 -187 M3 -187 L14 -190")]
-    return svg(b, "#cfd8dc")
+    b = ['<rect y="300" width="400" height="100" fill="#9c6b3c"/>', '<rect y="300" width="400" height="8" fill="#b08968"/>',
+         person(180, 300, 1.1, SKIN[2], "#2a9d8f", "#264653", "#1b1b1b", "bun", mood="grin", long_hair=True,
+                larm=((-30, 10), (-58, 0)), rarm=((14, 40), (16, 72))),
+         # the podium and its microphone
+         '<path d="M120 236 H240 L228 304 H132 Z" fill="#7f5539"/>',
+         '<rect x="114" y="226" width="132" height="14" rx="3" fill="#9c6b3c"/>',
+         '<circle cx="180" cy="270" r="15" fill="#e9c46a"/>',
+         '<path d="M162 226 L160 184" stroke="#495057" stroke-width="4"/><ellipse cx="160" cy="178" rx="6" ry="9" '
+         'fill="#343a40"/>',
+         # the wind and the notes it carries off
+         '<path d="M236 206 Q280 190 300 160 Q320 130 356 116" fill="none" stroke="#a8dadc" stroke-width="5" '
+         'stroke-linecap="round"/>',
+         '<path d="M230 170 Q270 150 296 100 Q310 76 340 78 Q358 82 350 96" fill="none" stroke="#a8dadc" '
+         'stroke-width="5" stroke-linecap="round"/>',
+         '<path d="M244 226 Q310 214 384 194" fill="none" stroke="#a8dadc" stroke-width="5" stroke-linecap="round"/>',
+         paper(270, 188, -20, 30, 38), paper(316, 132, 25, 34, 44), paper(356, 56, -35, 34, 44),
+         # her new idea, out loud
+         '<path d="M96 92 L132 116 L84 98 Z" fill="#fff"/>',
+         '<ellipse cx="74" cy="62" rx="50" ry="40" fill="#fff"/>',
+         '<circle cx="74" cy="56" r="26" fill="#fff3b0"/><circle cx="74" cy="54" r="17" fill="#ffd166"/>',
+         '<path d="M65 64 H83 L80 76 H68 Z" fill="#ffd166"/><rect x="66" y="76" width="16" height="11" rx="2" '
+         'fill="#6c757d"/>']
+    for k in range(8):
+        x = 25 + k * 50
+        b.append(f'<circle cx="{x}" cy="366" r="20" fill="#14213d"/><rect x="{x - 26}" y="376" width="52" height="30" '
+                 'rx="12" fill="#14213d"/>')
+    return svg(b, "#e3f2fd")
 
 
 def footprint(x, y, k, rot):
@@ -1128,23 +1131,37 @@ def inviting():
 
 
 def clashed_with():
-    helmet = ('<path d="M-25 -170 Q-26 -206 0 -206 Q26 -206 25 -170 Z" fill="#6c757d"/>'
-              '<path d="M0 -206 Q-6 -222 4 -228" fill="none" stroke="#e63946" stroke-width="6" stroke-linecap="round"/>')
-    b = ['<rect y="330" width="400" height="70" fill="#a7c957"/>', shadow(100, 334, 40), shadow(300, 334, 40),
-         person(100, 332, 1.1, "#e0ac69", "#457b9d", "#6c757d", "#000", "none", mood="angry",
-                larm=((-12, 40), (-16, 72)), rarm=((40, -20), (66, -50)), extra=helmet),
-         person(300, 332, 1.1, "#8d5524", "#e76f51", "#6c757d", "#000", "none", mood="angry",
-                larm=((-40, -20), (-66, -50)), rarm=((12, 40), (16, 72)), extra=helmet),
-         # crossed swords
-         '<line x1="176" y1="122" x2="282" y2="30" stroke="#dee2e6" stroke-width="9" stroke-linecap="round"/>',
-         '<line x1="224" y1="122" x2="118" y2="30" stroke="#dee2e6" stroke-width="9" stroke-linecap="round"/>',
-         '<rect x="166" y="120" width="26" height="8" rx="3" fill="#e9c46a" transform="rotate(-41 179 124)"/>',
-         '<rect x="208" y="120" width="26" height="8" rx="3" fill="#e9c46a" transform="rotate(41 221 124)"/>',
-         star(200, 82, 30, "#ffd166", .4), star(200, 82, 14, "#fff", .45)]
-    for a in range(-150, 40, 34):
-        ca, sa = math.cos(math.radians(a)), math.sin(math.radians(a))
-        b.append(f'<line x1="{f(200 + 38 * ca)}" y1="{f(82 + 38 * sa)}" x2="{f(200 + 54 * ca)}" y2="{f(82 + 54 * sa)}" '
-                 'stroke="#f4a261" stroke-width="4" stroke-linecap="round"/>')
+    tie = ('<path d="M-11 -156 L0 -144 L11 -156 Z" fill="#fff"/>'
+           '<path d="M0 -153 L-5 -146 L-2 -112 L0 -106 L2 -112 L5 -146 Z" fill="#e63946"/>'
+           '<rect x="-16" y="-136" width="40" height="52" rx="3" fill="#e9c46a" transform="rotate(8 -60 -112)"/>')
+    phones = ('<path d="M-20 -156 Q0 -138 20 -156" fill="none" stroke="#343a40" stroke-width="5" stroke-linecap="round"/>'
+              '<rect x="-27" y="-166" width="12" height="16" rx="5" fill="#343a40"/>'
+              '<rect x="15" y="-166" width="12" height="16" rx="5" fill="#343a40"/>'
+              '<rect x="-12" y="-108" width="18" height="20" rx="4" fill="#fff"/>'
+              '<path d="M6 -102 q8 0 8 6 q0 6 -8 6" fill="none" stroke="#fff" stroke-width="3"/>')
+    b = [# the strict half of the office and the relaxed half
+         '<rect x="0" y="0" width="200" height="330" fill="#dee2e6"/>',
+         '<rect x="200" y="0" width="200" height="330" fill="#ffe8a3"/>',
+         '<rect y="330" width="400" height="70" fill="#adb5bd"/>',
+         '<circle cx="60" cy="60" r="28" fill="#fff" stroke="#495057" stroke-width="5"/>',
+         '<path d="M60 60 V40 M60 60 H76" stroke="#495057" stroke-width="4" stroke-linecap="round"/>',
+         '<rect x="352" y="250" width="34" height="34" rx="4" fill="#e76f51"/>', bush(369, 230, 30),
+         '<path d="M220 40 Q280 70 340 40 Q370 30 400 44" fill="none" stroke="#6c757d" stroke-width="2"/>',
+         '<circle cx="246" cy="52" r="6" fill="#e76f51"/><circle cx="280" cy="58" r="6" fill="#4895ef"/>'
+         '<circle cx="314" cy="52" r="6" fill="#a7c957"/><circle cx="356" cy="40" r="6" fill="#f4a261"/>',
+         shadow(100, 334, 34),
+         person(100, 332, 1.1, SKIN[0], "#343a40", "#343a40", "#6c757d", "side", mood="angry",
+                brows="M-14 -192 L-3 -186 M3 -186 L14 -192",
+                larm=((-12, 30), (14, 40)), rarm=((36, -6), (64, -12)), extra=tie),
+         # the bean bag and the relaxed worker on it
+         '<path d="M240 334 Q226 270 270 256 Q320 240 350 280 Q364 310 350 334 Z" fill="#4895ef"/>',
+         person(296, 368, 1.05, SKIN[3], "#f4a261", "#457b9d", "#1b1b1b", "short", mood="frown", rot=8,
+                brows="M-14 -188 L-3 -192 M3 -192 L14 -188",
+                lleg=((-38, 4), (-44, 46)), rleg=((-30, 4), (-34, 46)),
+                larm=((-18, 30), (-30, 56)), rarm=((-10, 30), (-26, 46)), extra=phones),
+         # the clash between them
+         '<polygon points="250,36 222,90 240,92 218,146 266,78 246,76 268,36" fill="#ffd166" stroke="#e76f51" '
+         'stroke-width="4" stroke-linejoin="round"/>']
     return svg(b, "#e3f2fd")
 
 
