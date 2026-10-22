@@ -10,7 +10,7 @@ Source: SAT MAKON's `sat_vocabularyword.csv` (1,250 rows, all active, exported 2
 - **Examples:** SAT MAKON's file has none, so all 1,220 are new: one sentence each, using the word itself or a simple inflection, with no names of real people.
 - **Part of speech:** added for every word, as its definition uses it. A participle that the definition treats as a verb form ("overshadowed by: made less important…") is a verb; one it treats as a description ("cherished: greatly valued and loved") is an adjective. A word with a preposition after it takes the part of speech of the word ("skepticism toward": noun).
 
-- **Pictures:** 230 words have one (see Pictures below); the others have no `image` field.
+- **Pictures:** 280 words have one (see Pictures below); the others have no `image` field.
 
 ## Lists
 
@@ -355,7 +355,7 @@ Unit 50 repeats 14 of Unit 49's words, in the same order and with the same defin
 
 ## Pictures
 
-230 words have an `image`: an 800×800 PNG in `vocab/images/` named after the word. The first 30 were picked as the easiest to show in a picture; the other 200 were drawn in batches of 50, each time the first 50 words of `vocab/image-prompts/prompts.jsonl`, in study order, that had none. They are flat illustrations drawn for this list (not photos and not from SAT MAKON), with no text in them, so the picture shows the meaning and the app shows the word.
+280 words have an `image`: an 800×800 PNG in `vocab/images/` named after the word. The first 30 were picked as the easiest to show in a picture; the other 250 were drawn in batches of 50, each time the first 50 words of `vocab/image-prompts/prompts.jsonl`, in study order, that had none. They are flat illustrations drawn for this list (not photos and not from SAT MAKON), with no text in them, so the picture shows the meaning and the app shows the word.
 
 | List | Word | Picture |
 |---|---|---|
@@ -576,9 +576,59 @@ Unit 50 repeats 14 of Unit 49's words, in the same order and with the same defin
 | Unit 22 | innovation | `innovation.png` |
 | Unit 22 | extricated | `extricated.png` |
 | Unit 22 | preserving | `preserving.png` |
+| Unit 22 | accentuate | `accentuate.png` |
+| Unit 22 | vacate | `vacate.png` |
+| Unit 22 | running to | `running-to.png` |
+| Unit 22 | teach | `teach.png` |
+| Unit 23 | delayed by | `delayed-by.png` |
+| Unit 23 | follows | `follows.png` |
+| Unit 23 | synchronization | `synchronization.png` |
+| Unit 23 | borrow | `borrow.png` |
+| Unit 23 | diminish | `diminish.png` |
+| Unit 23 | scratchy | `scratchy.png` |
+| Unit 23 | retrieving | `retrieving.png` |
+| Unit 23 | habitable | `habitable.png` |
+| Unit 23 | dispute | `dispute.png` |
+| Unit 23 | discover | `discover.png` |
+| Unit 24 | complex | `complex.png` |
+| Unit 24 | pretending | `pretending.png` |
 | Unit 24 | obstructed | `obstructed.png` |
+| Unit 24 | exclusive to | `exclusive-to.png` |
+| Unit 24 | yield | `yield.png` |
+| Unit 24 | eccentric | `eccentric.png` |
+| Unit 24 | celebrated | `celebrated.png` |
+| Unit 24 | compose | `compose.png` |
+| Unit 24 | lucrative | `lucrative.png` |
+| Unit 24 | prepared for | `prepared-for.png` |
 | Unit 25 | multiplying | `multiplying.png` |
+| Unit 25 | faintly | `faintly.png` |
+| Unit 25 | substitute | `substitute.png` |
+| Unit 25 | foretells | `foretells.png` |
+| Unit 25 | compared | `compared.png` |
+| Unit 25 | pranks | `pranks.png` |
+| Unit 25 | venerate | `venerate.png` |
+| Unit 25 | cheap | `cheap.png` |
+| Unit 25 | skeptical | `skeptical.png` |
+| Unit 25 | impenetrable | `impenetrable.png` |
+| Unit 26 | magnitude | `magnitude.png` |
+| Unit 26 | experiment | `experiment.png` |
+| Unit 26 | mitigate | `mitigate.png` |
+| Unit 26 | deciding | `deciding.png` |
+| Unit 26 | nervous about | `nervous-about.png` |
+| Unit 26 | familiarize | `familiarize.png` |
+| Unit 26 | admonish | `admonish.png` |
+| Unit 26 | useful | `useful.png` |
+| Unit 26 | traditional | `traditional.png` |
+| Unit 26 | useless | `useless.png` |
+| Unit 27 | mock | `mock.png` |
+| Unit 27 | rousing | `rousing.png` |
+| Unit 27 | hearing | `hearing.png` |
+| Unit 27 | avoid | `avoid.png` |
+| Unit 27 | innovative | `innovative.png` |
 | Unit 27 | heterogeneous | `heterogeneous.png` |
+| Unit 27 | occupying | `occupying.png` |
+| Unit 27 | neutral | `neutral.png` |
+| Unit 27 | accidental | `accidental.png` |
 | Unit 28 | constrict | `constrict.png` |
 | Unit 31 | erratic | `erratic.png` |
 | Unit 33 | immense | `immense.png` |
