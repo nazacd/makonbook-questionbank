@@ -28,6 +28,10 @@ def face(kind="smile", brows=None):
                    f'<circle cx="-8" cy="-181" r="2.6" fill="{INK}"/><circle cx="8" cy="-181" r="2.6" fill="{INK}"/>')
     elif kind in ("side", "sidenm"):
         out.append(f'<circle cx="-4" cy="-180" r="3" fill="{INK}"/><circle cx="12" cy="-180" r="3" fill="{INK}"/>')
+    elif kind == "sly":
+        out.append('<circle cx="-8" cy="-180" r="5.5" fill="#fff"/><circle cx="8" cy="-180" r="5.5" fill="#fff"/>'
+                   f'<circle cx="-5" cy="-179" r="3" fill="{INK}"/><circle cx="11" cy="-179" r="3" fill="{INK}"/>'
+                   f'<path d="M-14 -182 H-2 M2 -182 H14" stroke="{INK}" stroke-width="3" stroke-linecap="round"/>')
     elif kind == "left":
         out.append(f'<circle cx="-12" cy="-180" r="3" fill="{INK}"/><circle cx="4" cy="-180" r="3" fill="{INK}"/>')
     else:
@@ -35,7 +39,8 @@ def face(kind="smile", brows=None):
     mouth = {"smile": "M-7 -168 Q0 -161 7 -168", "closed": "M-7 -168 Q0 -162 7 -168",
              "content": "M-7 -168 Q0 -162 7 -168", "flat": "M-6 -166 H6", "side": "M-2 -166 Q4 -168 10 -165",
              "grin": None, "wide": None, "shut": "M-7 -166 Q0 -169 7 -166",
-             "left": "M-10 -166 H2", "sidenm": None}[kind]
+             "left": "M-10 -166 H2", "sidenm": None,
+             "sly": "M-7 -167 Q1 -164 8 -170"}[kind]
     if kind == "grin":
         out.append('<path d="M-9 -170 Q0 -158 9 -170 Z" fill="#fff" stroke="#264653" stroke-width="2.5" '
                    'stroke-linejoin="round"/>')
@@ -783,20 +788,27 @@ def gear(cx, cy, R, teeth, rot, color):
 
 
 def secretive():
-    box = ('<rect x="58" y="218" width="96" height="74" rx="4" fill="#e76f51"/>'
-           '<rect x="96" y="218" width="18" height="74" fill="#ffd166"/>'
-           '<path d="M105 218 Q84 196 76 210 Q84 222 105 218 Q126 196 134 210 Q126 222 105 218 Z" fill="#ffd166"/>')
-    cup = f'<rect x="20" y="-182" width="14" height="28" rx="7" fill="{SKIN[1]}"/>'
-    ear = f'<ellipse cx="-23" cy="-178" rx="6" ry="9" fill="{SKIN[2]}"/>'
-    b = ['<rect y="350" width="400" height="50" fill="#cdb4db" opacity=".6"/>',
-         shadow(148, 354, 46), shadow(268, 354, 46), box,
-         person(150, 352, 1.3, SKIN[1], "#264653", "#457b9d", "#7f5539", "side", rot=6,
-                larm=((-24, 34), (-30, 66)), rarm=((18, 22), (4, -16)), mood="left",
-                brows="M-18 -191 L-6 -193 M2 -193 L12 -191", extra=cup),
-         person(268, 352, 1.3, SKIN[2], "#e9c46a", "#264653", "#1b1b1b", "short", mood="wide",
-                larm=((-12, 40), (-14, 76)), rarm=((12, 40), (14, 76)), extra=ear),
-         f'<path d="M216 128 q6 -4 10 0 M214 140 q8 -2 14 2 M216 152 q6 2 10 -2" fill="none" stroke="{INK}" '
-         'stroke-width="2.5" stroke-linecap="round" opacity=".6"/>']
+    diary = ('<g transform="rotate(-10 -10 -112)">'
+             '<rect x="-36" y="-142" width="50" height="60" rx="4" fill="#2a9d8f"/>'
+             '<rect x="-36" y="-142" width="8" height="60" fill="#264653" opacity=".35"/>'
+             '<rect x="0" y="-118" width="18" height="10" fill="#7f5539"/>'
+             '<path d="M-6 -118 V-123 Q-6 -131 1 -131 Q8 -131 8 -123 V-118" fill="none" stroke="#adb5bd" '
+             'stroke-width="3.5"/>'
+             '<rect x="-10" y="-119" width="22" height="17" rx="3" fill="#e9c46a"/>'
+             f'<circle cx="1" cy="-113" r="2.5" fill="{INK}"/><rect x="0" y="-113" width="2" height="6" fill="{INK}"/></g>')
+    arms = (limb(((-22, -146), (-42, -112), (-14, -88)), "#e76f51", 15) + f'<circle cx="-10" cy="-88" r="8.5" fill="{SKIN[1]}"/>'
+            + limb(((22, -146), (30, -112), (-2, -100)), "#e76f51", 15) + f'<circle cx="-6" cy="-100" r="8.5" fill="{SKIN[1]}"/>')
+    b = ['<rect y="350" width="400" height="50" fill="#cdb4db" opacity=".6"/>', shadow(140, 354, 50), shadow(296, 354, 40),
+         # the curious friend, on tiptoe and craning to see
+         person(296, 352, 1.15, SKIN[3], "#e9c46a", "#264653", "#1b1b1b", "short", mood="left", tiptoe=True,
+                larm=((-24, 20), (-46, 10)), rarm=((12, 40), (14, 74)), lleg=((-2, 44), (0, 80)),
+                rleg=((2, 44), (4, 80)), brows="M-20 -195 Q-14 -200 -8 -195 M0 -195 Q6 -200 12 -195"),
+         # the diary's owner, holding it tight and turned away, eyeing the friend
+         person(140, 352, 1.35, SKIN[1], "#e76f51", "#457b9d", "#7f5539", "side",
+                larm=((-20, 34), (8, 58)), rarm=((8, 34), (-24, 46)), mood="sly", extra=diary + arms,
+                brows="M-14 -190 L-2 -188 M2 -188 L14 -191"),
+         f'<path d="M236 136 q-8 -8 -4 -16 M244 132 q0 -10 6 -14" fill="none" stroke="{INK}" stroke-width="3" '
+         'stroke-linecap="round" opacity=".45"/>']
     return svg(b, "#f3effa")
 
 
