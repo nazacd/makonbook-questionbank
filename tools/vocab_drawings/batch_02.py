@@ -725,25 +725,46 @@ def oddity():
 
 
 def collaborators():
-    b = ['<rect y="320" width="400" height="80" fill="#ced4da"/>']
-    # the middle partner stands behind the table
-    b.append(person(200, 318, 1.12, SKIN[2], "#fff", "#264653", "#1b1b1b", "short",
-                    larm=((-20, 20), (-30, 50)), rarm=((20, 20), (30, 50)), mood="smile"))
-    b += ['<rect x="40" y="240" width="320" height="14" rx="4" fill="#7f5539"/>',
-          '<rect x="56" y="254" width="12" height="80" fill="#6f4518"/><rect x="332" y="254" width="12" height="80" '
-          'fill="#6f4518"/>',
-          gear(152, 172, 28, 8, 10, "#e9c46a"), gear(250, 178, 20, 6, 0, "#f4a261"),
-          '<rect x="140" y="180" width="120" height="60" rx="8" fill="#457b9d"/>',
-          '<rect x="154" y="192" width="44" height="26" rx="4" fill="#a8dadc"/>',
-          '<circle cx="228" cy="200" r="8" fill="#e63946"/><circle cx="228" cy="224" r="6" fill="#ffd166"/>']
-    b.append(person(70, 362, .92, SKIN[0], "#fff", "#457b9d", "#e9c46a", "bun",
-                    larm=((-10, 40), (-12, 76)), rarm=((36, -10), (70, -20)), mood="smile"))
-    b.append(person(330, 362, .92, SKIN[3], "#fff", "#264653", "#1b1b1b", "short",
-                    rarm=((10, 40), (12, 76)), larm=((-36, -10), (-74, -18)), mood="smile"))
-    b += ['<g transform="rotate(-30 146 204)"><rect x="122" y="198" width="44" height="10" rx="4" fill="#6c757d"/>'
-          '<circle cx="120" cy="203" r="10" fill="#6c757d"/><circle cx="118" cy="203" r="5" fill="#fff"/></g>',
-          '<path d="M258 206 Q270 206 268 214" fill="none" stroke="#343a40" stroke-width="5"/>',
-          '<rect x="250" y="190" width="14" height="22" rx="3" fill="#2a9d8f"/>']
+    b = ['<rect y="340" width="400" height="60" fill="#ced4da"/>', shadow(190, 344, 60), shadow(70, 352, 30, 5),
+         shadow(300, 352, 30, 5), shadow(356, 352, 26, 5),
+         # the robot they are building together
+         '<rect x="166" y="296" width="18" height="46" fill="#6c757d"/><rect x="198" y="296" width="18" height="46" '
+         'fill="#6c757d"/>',
+         '<rect x="158" y="334" width="30" height="12" rx="5" fill="#495057"/>'
+         '<rect x="194" y="334" width="30" height="12" rx="5" fill="#495057"/>',
+         '<rect x="140" y="186" width="100" height="116" rx="14" fill="#457b9d"/>',
+         '<rect x="158" y="204" width="64" height="40" rx="6" fill="#a8dadc"/>',
+         '<circle cx="170" cy="270" r="8" fill="#e63946"/><circle cx="192" cy="270" r="8" fill="#ffd166"/>'
+         '<circle cx="214" cy="270" r="8" fill="#52b788"/>',
+         '<rect x="182" y="174" width="16" height="14" fill="#6c757d"/>',
+         '<rect x="152" y="120" width="76" height="58" rx="12" fill="#a8dadc"/>',
+         '<circle cx="174" cy="148" r="10" fill="#fff"/><circle cx="206" cy="148" r="10" fill="#fff"/>',
+         f'<circle cx="176" cy="149" r="5" fill="{INK}"/><circle cx="208" cy="149" r="5" fill="{INK}"/>',
+         '<path d="M178 166 H202" stroke="#457b9d" stroke-width="4" stroke-linecap="round"/>',
+         '<path d="M190 120 V100" stroke="#6c757d" stroke-width="4"/><circle cx="190" cy="96" r="7" fill="#e63946"/>',
+         # its right arm, already fitted
+         '<path d="M240 204 Q262 214 262 250" fill="none" stroke="#6c757d" stroke-width="14" stroke-linecap="round"/>',
+         '<path d="M252 256 l10 12 l10 -12" fill="none" stroke="#495057" stroke-width="5" stroke-linecap="round"/>']
+    # left: fitting the other arm
+    b.append(person(70, 350, .9, SKIN[0], "#fff", "#457b9d", "#e9c46a", "bun",
+                    larm=((-10, 40), (-12, 76)), rarm=((16, 14), (34, -6)), mood="smile"))
+    b += ['<rect x="100" y="198" width="48" height="16" rx="8" fill="#6c757d"/>',
+          f'<circle cx="120" cy="213" r="8" fill="{SKIN[0]}"/>']
+    # middle right: tightening a bolt
+    b.append(person(300, 350, .9, SKIN[3], "#fff", "#264653", "#1b1b1b", "short",
+                    larm=((-14, 14), (-22, -8)), rarm=((10, 40), (12, 76)), mood="smile"))
+    b += ['<g transform="rotate(-20 250 210)"><rect x="244" y="205" width="34" height="10" rx="4" fill="#adb5bd"/>'
+          '<circle cx="244" cy="210" r="10" fill="#adb5bd"/><circle cx="242" cy="210" r="5" fill="#457b9d"/></g>',
+          f'<circle cx="260" cy="211" r="8" fill="{SKIN[3]}"/>']
+    # right: reading out the plan
+    b.append(person(358, 350, .85, SKIN[1], "#fff", "#7f5539", "#5c4033", "side",
+                    larm=((-14, 34), (-14, 64)), rarm=((12, 34), (14, 64)), mood="smile"))
+    b += ['<rect x="322" y="242" width="72" height="54" rx="3" fill="#4895ef"/>',
+          '<rect x="346" y="250" width="22" height="18" fill="none" stroke="#fff" stroke-width="2"/>',
+          '<rect x="340" y="270" width="34" height="18" fill="none" stroke="#fff" stroke-width="2"/>',
+          '<path d="M330 250 h10 M330 258 h10 M378 252 h10 M378 262 h10" stroke="#fff" stroke-width="2"/>',
+          f'<circle cx="330" cy="292" r="7" fill="{SKIN[1]}"/><circle cx="386" cy="292" r="7" fill="{SKIN[1]}"/>',
+          sparkle(120, 140, 10, "#ffd166"), sparkle(270, 120, 8, "#ffd166")]
     return svg(b, "#eef4ff")
 
 
@@ -762,19 +783,20 @@ def gear(cx, cy, R, teeth, rot, color):
 
 
 def secretive():
-    box = ('<rect x="96" y="214" width="208" height="96" rx="5" fill="#e76f51"/>'
-           '<rect x="96" y="254" width="208" height="18" fill="#ffd166"/>'
-           '<path d="M96 263 Q70 238 62 256 Q70 270 96 263 Q70 288 62 272 Z" fill="#ffd166"/>')
-    shh = ('<ellipse cx="0" cy="-166" rx="6" ry="4.5" fill="#c1553b"/>'
-           + limb(((22, -146), (38, -120), (6, -140)), "#264653", 15)
-           + f'<circle cx="4" cy="-142" r="9" fill="{SKIN[1]}"/>'
-           '<g transform="rotate(-8 2 -150)"><rect x="-1" y="-172" width="7" height="28" rx="3.5" fill="#e0ac69" '
-           'stroke="#c68642" stroke-width="1.5"/></g>')
-    b = ['<rect y="370" width="400" height="30" fill="#cdb4db" opacity=".6"/>',
-         shadow(200, 376, 80), box,
-         person(200, 374, 1.6, SKIN[1], "#264653", "#457b9d", "#7f5539", "side",
-                larm=((-22, 30), (-34, 48)), rarm=((0, 4),), mood="sidenm",
-                brows="M-12 -190 L-2 -189 M4 -189 L16 -193", extra=shh)]
+    box = ('<rect x="58" y="218" width="96" height="74" rx="4" fill="#e76f51"/>'
+           '<rect x="96" y="218" width="18" height="74" fill="#ffd166"/>'
+           '<path d="M105 218 Q84 196 76 210 Q84 222 105 218 Q126 196 134 210 Q126 222 105 218 Z" fill="#ffd166"/>')
+    cup = f'<rect x="20" y="-182" width="14" height="28" rx="7" fill="{SKIN[1]}"/>'
+    ear = f'<ellipse cx="-23" cy="-178" rx="6" ry="9" fill="{SKIN[2]}"/>'
+    b = ['<rect y="350" width="400" height="50" fill="#cdb4db" opacity=".6"/>',
+         shadow(148, 354, 46), shadow(268, 354, 46), box,
+         person(150, 352, 1.3, SKIN[1], "#264653", "#457b9d", "#7f5539", "side", rot=6,
+                larm=((-24, 34), (-30, 66)), rarm=((18, 22), (4, -16)), mood="left",
+                brows="M-18 -191 L-6 -193 M2 -193 L12 -191", extra=cup),
+         person(268, 352, 1.3, SKIN[2], "#e9c46a", "#264653", "#1b1b1b", "short", mood="wide",
+                larm=((-12, 40), (-14, 76)), rarm=((12, 40), (14, 76)), extra=ear),
+         f'<path d="M216 128 q6 -4 10 0 M214 140 q8 -2 14 2 M216 152 q6 2 10 -2" fill="none" stroke="{INK}" '
+         'stroke-width="2.5" stroke-linecap="round" opacity=".6"/>']
     return svg(b, "#f3effa")
 
 
