@@ -6,7 +6,7 @@ The figures and small shapes come from batch_02.py and batch_03.py.
 import math
 import random
 
-from batch_02 import SKIN, heart, limb, person, puzzle_piece, shadow, sheep, sparkle, star
+from batch_02 import SKIN, limb, person, puzzle_piece, shadow, sheep, sparkle, star
 from batch_03 import bicycle, cyclist, dog, side_runner, thumbs_up
 from common import INK, arrow, arc_arrow, bush, carrow, f, pine, svg
 
@@ -347,47 +347,33 @@ def perceive():
     return svg(b, "#1d2d44")
 
 
-def hard_hat(color="#ffd166"):
-    return (f'<path d="M-26 -186 Q-26 -210 0 -210 Q26 -210 26 -186 Z" fill="{color}"/>'
-            f'<rect x="-30" y="-190" width="60" height="7" rx="3" fill="{color}"/>')
-
-
 def staged():
-    signs = (
-        # hard hat
-        '<path d="M-14 6 Q-14 -12 0 -12 Q14 -12 14 6 Z" fill="#ffd166"/><rect x="-18" y="4" width="36" height="6" '
-        'rx="3" fill="#ffd166"/>',
-        # first-aid cross
-        '<path d="M-6 -16 H6 V-6 H16 V6 H6 V16 H-6 V6 H-16 V-6 H-6 Z" fill="#52b788"/>',
-        # shield with a tick
-        '<path d="M0 -18 L16 -12 Q16 8 0 18 Q-16 8 -16 -12 Z" fill="#4895ef"/>'
-        '<path d="M-7 0 L-2 6 L8 -6" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" '
-        'stroke-linejoin="round"/>',
-        # care for the workers
-        heart(0, 2, 16))
-    b = [# the factory
-         '<rect x="30" y="140" width="340" height="170" fill="#b8c0c8"/>',
-         '<polygon points="30,140 30,100 98,140 98,100 166,140 166,100 234,140 234,100 302,140 302,100 370,140" '
-         'fill="#8d99ae"/>',
-         '<rect x="300" y="40" width="30" height="80" fill="#6c757d"/>',
-         '<circle cx="320" cy="30" r="14" fill="#ced4da"/><circle cx="338" cy="16" r="12" fill="#dee2e6"/>'
-         '<circle cx="358" cy="8" r="10" fill="#e9ecef"/>']
-    for x in range(52, 360, 56):
-        b.append(f'<rect x="{x}" y="164" width="36" height="28" rx="3" fill="#457b9d"/>')
-    b += ['<rect x="170" y="230" width="60" height="80" fill="#6c757d"/>',
-          '<rect y="300" width="400" height="100" fill="#ced4da"/>']
-    workers = ((52, SKIN[1], "#e76f51", "#ffd166", "wide"), (140, SKIN[3], "#2a9d8f", "#f4a261", "angry"),
-               (228, SKIN[0], "#457b9d", "#ffd166", "wide"), (316, SKIN[2], "#e9c46a", "#f4a261", "angry"))
-    for (x, sk, shirt, hat, mood), sign in zip(workers, signs):
-        held = ('<line x1="40" y1="-140" x2="40" y2="-252" stroke="#9c6b3c" stroke-width="6" stroke-linecap="round"/>'
-                '<rect x="0" y="-306" width="80" height="58" rx="4" fill="#fff" stroke="#adb5bd" stroke-width="3"/>'
-                f'<g transform="translate(40 -277)">{sign}</g>'
-                f'<circle cx="40" cy="-196" r="8.5" fill="{sk}"/>' + hard_hat(hat))
-        b += [shadow(x, 354, 30),
-              person(x, 352, .88, sk, shirt, "#264653", "#1b1b1b", "none", mood=mood,
-                     larm=((-14, 40), (-16, 72)), rarm=((14, -18), (18, -50)), extra=held)]
-    return svg(b, "#cfe8f3")
-
+    b = ['<rect width="400" height="400" fill="#3d405b"/>',
+         '<polygon points="120,0 160,0 230,300 60,300" fill="#fff3b0" opacity=".25"/>',
+         '<polygon points="240,0 280,0 340,300 180,300" fill="#fff3b0" opacity=".25"/>',
+         '<rect y="290" width="400" height="30" fill="#9c6b3c"/>', '<rect y="290" width="400" height="8" fill="#b08968"/>',
+         '<rect y="320" width="400" height="80" fill="#22223b"/>',
+         person(150, 296, 1.0, SKIN[1], "#457b9d", "#264653", "#5c4033", "short", mood="grin",
+                larm=((-30, -20), (-60, -30)), rarm=((12, 40), (14, 72)),
+                extra='<path d="M-22 -198 L-18 -222 L-6 -206 L0 -226 L6 -206 L18 -222 L22 -198 Z" fill="#e9c46a"/>'),
+         '<path d="M150 130 L130 270 L170 270 Z" fill="#9d0208" opacity=".0"/>',
+         person(270, 296, 1.0, SKIN[3], "#a7c957", "#264653", "#1b1b1b", "bun", mood="wide",
+                larm=((-12, 40), (-14, 72)), rarm=((24, -10), (40, -40)), skirt=True),
+         '<path d="M0 0 H400 V40 Q300 64 200 40 Q100 64 0 40 Z" fill="#c1121f"/>',
+         '<path d="M0 0 H60 Q70 150 40 300 H0 Z M400 0 H340 Q330 150 360 300 H400 Z" fill="#9d0208"/>']
+    for k in range(9):
+        x = 22 + k * 45
+        b.append(f'<circle cx="{x}" cy="364" r="22" fill="#14213d"/><rect x="{x - 30}" y="374" width="60" height="30" '
+                 'rx="12" fill="#14213d"/>')
+    # the director with the plan for the scene
+    plan = ('<rect x="-4" y="-150" width="40" height="52" rx="4" fill="#bc6c25"/>'
+            '<rect x="0" y="-144" width="32" height="42" fill="#fff"/>'
+            '<path d="M10 -134 L22 -112" stroke="#9c6b3c" stroke-width="3" stroke-dasharray="4 3"/>'
+            '<circle cx="8" cy="-136" r="5" fill="#457b9d"/><circle cx="24" cy="-110" r="5" fill="#a7c957"/>'
+            '<ellipse cx="0" cy="-202" rx="26" ry="8" fill="#264653"/><circle cx="0" cy="-210" r="4" fill="#264653"/>')
+    b += [person(340, 390, .76, SKIN[0], "#e9c46a", "#264653", "#6c757d", "short", mood="smile",
+                 larm=((-30, -24), (-58, -50)), rarm=((-6, 36), (-4, 50)), extra=plan)]
+    return svg(b, "#3d405b")
 
 
 def arduous():
