@@ -10,7 +10,7 @@ Source: SAT MAKON's `sat_vocabularyword.csv` (1,250 rows, all active, exported 2
 - **Examples:** SAT MAKON's file has none, so all 1,220 are new: one sentence each, using the word itself or a simple inflection, with no names of real people.
 - **Part of speech:** added for every word, as its definition uses it. A participle that the definition treats as a verb form ("overshadowed by: made less important…") is a verb; one it treats as a description ("cherished: greatly valued and loved") is an adjective. A word with a preposition after it takes the part of speech of the word ("skepticism toward": noun).
 
-- **Pictures:** 80 words have one (see Pictures below); the others have no `image` field.
+- **Pictures:** 130 words have one (see Pictures below); the others have no `image` field.
 
 ## Lists
 
@@ -355,7 +355,7 @@ Unit 50 repeats 14 of Unit 49's words, in the same order and with the same defin
 
 ## Pictures
 
-80 words have an `image`: an 800×800 PNG in `vocab/images/` named after the word. The first 30 were picked as the easiest to show in a picture; the next 50 are the first 50 words of `vocab/image-prompts/prompts.jsonl`, in study order, that had none. They are flat illustrations drawn for this list (not photos and not from SAT MAKON), with no text in them, so the picture shows the meaning and the app shows the word.
+130 words have an `image`: an 800×800 PNG in `vocab/images/` named after the word. The first 30 were picked as the easiest to show in a picture; the other 100 were drawn in batches of 50, each time the first 50 words of `vocab/image-prompts/prompts.jsonl`, in study order, that had none. They are flat illustrations drawn for this list (not photos and not from SAT MAKON), with no text in them, so the picture shows the meaning and the app shows the word.
 
 | List | Word | Picture |
 |---|---|---|
@@ -411,10 +411,60 @@ Unit 50 repeats 14 of Unit 49's words, in the same order and with the same defin
 | Unit 5 | achievements | `achievements.png` |
 | Unit 6 | observant | `observant.png` |
 | Unit 6 | content | `content.png` |
+| Unit 6 | fruitless | `fruitless.png` |
+| Unit 6 | precursors | `precursors.png` |
+| Unit 6 | bypassed | `bypassed.png` |
+| Unit 6 | ignore | `ignore.png` |
+| Unit 6 | source | `source.png` |
+| Unit 6 | rejected | `rejected.png` |
+| Unit 6 | appeased | `appeased.png` |
+| Unit 6 | inherited | `inherited.png` |
+| Unit 7 | rival | `rival.png` |
+| Unit 7 | worried | `worried.png` |
+| Unit 7 | create | `create.png` |
 | Unit 7 | amplify | `amplify.png` |
+| Unit 7 | suspicious | `suspicious.png` |
+| Unit 7 | determined | `determined.png` |
+| Unit 7 | praised | `praised.png` |
+| Unit 7 | improvise | `improvise.png` |
+| Unit 7 | trace | `trace.png` |
+| Unit 7 | alter | `alter.png` |
+| Unit 8 | anticipating | `anticipating.png` |
+| Unit 8 | persuade | `persuade.png` |
+| Unit 8 | imaginative | `imaginative.png` |
+| Unit 8 | sketch | `sketch.png` |
+| Unit 8 | imitated | `imitated.png` |
+| Unit 8 | exposed | `exposed.png` |
+| Unit 8 | subdued | `subdued.png` |
+| Unit 8 | catastrophic | `catastrophic.png` |
+| Unit 8 | craft | `craft.png` |
+| Unit 8 | visualize | `visualize.png` |
 | Unit 9 | hoard | `hoard.png` |
+| Unit 9 | gaining on | `gaining-on.png` |
+| Unit 9 | exaggerate | `exaggerate.png` |
+| Unit 9 | reconcile | `reconcile.png` |
+| Unit 9 | paucity of | `paucity-of.png` |
+| Unit 9 | refute | `refute.png` |
+| Unit 9 | offered | `offered.png` |
+| Unit 9 | costly | `costly.png` |
+| Unit 9 | surrendered | `surrendered.png` |
 | Unit 9 | dormant | `dormant.png` |
+| Unit 10 | powerful | `powerful.png` |
+| Unit 10 | discovered | `discovered.png` |
+| Unit 10 | focused | `focused.png` |
+| Unit 10 | extended | `extended.png` |
+| Unit 10 | insurmountable | `insurmountable.png` |
+| Unit 10 | choose | `choose.png` |
+| Unit 10 | affinity for | `affinity-for.png` |
+| Unit 10 | inviting | `inviting.png` |
+| Unit 10 | clashed with | `clashed-with.png` |
+| Unit 10 | accelerate | `accelerate.png` |
+| Unit 11 | partition | `partition.png` |
+| Unit 11 | deceptive | `deceptive.png` |
 | Unit 11 | magnify | `magnify.png` |
+| Unit 11 | unpredictable | `unpredictable.png` |
+| Unit 11 | renounce | `renounce.png` |
+| Unit 11 | oversees | `oversees.png` |
 | Unit 11 | interdependent | `interdependent.png` |
 | Unit 13 | fluctuate | `fluctuate.png` |
 | Unit 13 | accumulate | `accumulate.png` |

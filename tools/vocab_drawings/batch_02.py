@@ -34,22 +34,34 @@ def face(kind="smile", brows=None):
                    f'<path d="M-14 -182 H-2 M2 -182 H14" stroke="{INK}" stroke-width="3" stroke-linecap="round"/>')
     elif kind == "left":
         out.append(f'<circle cx="-12" cy="-180" r="3" fill="{INK}"/><circle cx="4" cy="-180" r="3" fill="{INK}"/>')
+    elif kind == "down":
+        out.append(f'<circle cx="-8" cy="-175" r="3" fill="{INK}"/><circle cx="8" cy="-175" r="3" fill="{INK}"/>'
+                   f'<path d="M-13 -179 H-3 M3 -179 H13" stroke="{INK}" stroke-width="2.5" stroke-linecap="round"/>')
+    elif kind == "cry":
+        out.append(f'<path d="M-13 -178 Q-8 -184 -3 -178 M3 -178 Q8 -184 13 -178" fill="none" stroke="{INK}" '
+                   'stroke-width="3" stroke-linecap="round"/>'
+                   '<path d="M-10 -176 V-158 M10 -176 V-158" stroke="#4895ef" stroke-width="4" stroke-linecap="round"/>')
     else:
         out.append(f'<circle cx="-8" cy="-180" r="3" fill="{INK}"/><circle cx="8" cy="-180" r="3" fill="{INK}"/>')
     mouth = {"smile": "M-7 -168 Q0 -161 7 -168", "closed": "M-7 -168 Q0 -162 7 -168",
              "content": "M-7 -168 Q0 -162 7 -168", "flat": "M-6 -166 H6", "side": "M-2 -166 Q4 -168 10 -165",
              "grin": None, "wide": None, "shut": "M-7 -166 Q0 -169 7 -166",
              "left": "M-10 -166 H2", "sidenm": None,
-             "sly": "M-7 -167 Q1 -164 8 -170"}[kind]
+             "sly": "M-7 -167 Q1 -164 8 -170", "frown": "M-7 -163 Q0 -169 7 -163", "down": "M-5 -165 H5",
+             "cry": None, "angry": "M-7 -164 H7"}[kind]
     if kind == "grin":
         out.append('<path d="M-9 -170 Q0 -158 9 -170 Z" fill="#fff" stroke="#264653" stroke-width="2.5" '
                    'stroke-linejoin="round"/>')
     elif kind == "wide":
         out.append(f'<ellipse cx="0" cy="-164" rx="5" ry="6.5" fill="{INK}"/>')
+    elif kind == "cry":
+        out.append(f'<path d="M-8 -162 Q0 -174 8 -162 Z" fill="{INK}"/>')
     elif mouth is None:
         pass
     else:
         out.append(f'<path d="{mouth}" fill="none" stroke="{INK}" stroke-width="3" stroke-linecap="round"/>')
+    if kind == "angry" and not brows:
+        brows = "M-14 -190 L-3 -186 M3 -186 L14 -190"
     if brows:
         out.append(f'<path d="{brows}" fill="none" stroke="{INK}" stroke-width="3" stroke-linecap="round"/>')
     if kind in ("smile", "closed", "content", "grin"):
