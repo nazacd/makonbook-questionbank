@@ -35,8 +35,11 @@ def bicycle(color):
             f'<rect x="-26" y="-80" width="22" height="7" rx="3" fill="{INK}"/>')
 
 
-def cyclist(x, y, bike, shirt, skin, helmet, look_down=False, k=1.0):
+def cyclist(x, y, bike, shirt, skin, helmet, look_down=False, k=1.0, happy=False):
     eye_y = -134 if look_down else -139
+    brow = ("" if happy else f'<path d="M31 -144 L44 -139" stroke="{INK}" stroke-width="3" stroke-linecap="round"/>')
+    mouth = ('<path d="M33 -129 Q38 -124 43 -129" fill="none" stroke="#264653" stroke-width="2.5" stroke-linecap="round"/>'
+             if happy else f'<path d="M34 -128 H42" stroke="{INK}" stroke-width="2.5" stroke-linecap="round"/>')
     return (f'<g transform="translate({f(x)} {f(y)}) scale({k})">' + bicycle(bike)
             + limb(((-15, -82), (12, -58), (4, -34)), INK, 11)
             + limb(((-15, -82), (-4, -52), (-6, -30)), "#495057", 11)
@@ -45,8 +48,7 @@ def cyclist(x, y, bike, shirt, skin, helmet, look_down=False, k=1.0):
             + f'<circle cx="30" cy="-138" r="16" fill="{skin}"/>'
             f'<path d="M12 -146 Q14 -164 32 -162 Q46 -160 46 -146 Z" fill="{helmet}"/>'
             f'<circle cx="38" cy="{eye_y}" r="3.2" fill="{INK}"/>'
-            f'<path d="M31 -144 L44 -139" stroke="{INK}" stroke-width="3" stroke-linecap="round"/>'
-            f'<path d="M34 -128 H42" stroke="{INK}" stroke-width="2.5" stroke-linecap="round"/></g>')
+            + brow + mouth + '</g>')
 
 
 # ---------------------------------------------------------------------------------------------

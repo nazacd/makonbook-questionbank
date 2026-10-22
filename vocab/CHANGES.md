@@ -10,7 +10,7 @@ Source: SAT MAKON's `sat_vocabularyword.csv` (1,250 rows, all active, exported 2
 - **Examples:** SAT MAKON's file has none, so all 1,220 are new: one sentence each, using the word itself or a simple inflection, with no names of real people.
 - **Part of speech:** added for every word, as its definition uses it. A participle that the definition treats as a verb form ("overshadowed by: made less important…") is a verb; one it treats as a description ("cherished: greatly valued and loved") is an adjective. A word with a preposition after it takes the part of speech of the word ("skepticism toward": noun).
 
-- **Pictures:** 130 words have one (see Pictures below); the others have no `image` field.
+- **Pictures:** 180 words have one (see Pictures below); the others have no `image` field.
 
 ## Lists
 
@@ -355,7 +355,7 @@ Unit 50 repeats 14 of Unit 49's words, in the same order and with the same defin
 
 ## Pictures
 
-130 words have an `image`: an 800×800 PNG in `vocab/images/` named after the word. The first 30 were picked as the easiest to show in a picture; the other 100 were drawn in batches of 50, each time the first 50 words of `vocab/image-prompts/prompts.jsonl`, in study order, that had none. They are flat illustrations drawn for this list (not photos and not from SAT MAKON), with no text in them, so the picture shows the meaning and the app shows the word.
+180 words have an `image`: an 800×800 PNG in `vocab/images/` named after the word. The first 30 were picked as the easiest to show in a picture; the other 150 were drawn in batches of 50, each time the first 50 words of `vocab/image-prompts/prompts.jsonl`, in study order, that had none. They are flat illustrations drawn for this list (not photos and not from SAT MAKON), with no text in them, so the picture shows the meaning and the app shows the word.
 
 | List | Word | Picture |
 |---|---|---|
@@ -465,9 +465,59 @@ Unit 50 repeats 14 of Unit 49's words, in the same order and with the same defin
 | Unit 11 | unpredictable | `unpredictable.png` |
 | Unit 11 | renounce | `renounce.png` |
 | Unit 11 | oversees | `oversees.png` |
+| Unit 11 | repetitive | `repetitive.png` |
 | Unit 11 | interdependent | `interdependent.png` |
+| Unit 11 | ubiquitous | `ubiquitous.png` |
+| Unit 11 | complaining | `complaining.png` |
+| Unit 12 | aggressive | `aggressive.png` |
+| Unit 12 | managed | `managed.png` |
+| Unit 12 | physical | `physical.png` |
+| Unit 12 | adapt to | `adapt-to.png` |
+| Unit 12 | agree with | `agree-with.png` |
+| Unit 12 | adjusted | `adjusted.png` |
+| Unit 12 | convenient | `convenient.png` |
+| Unit 12 | prediction | `prediction.png` |
+| Unit 12 | urge | `urge.png` |
+| Unit 12 | perceive | `perceive.png` |
+| Unit 13 | staged | `staged.png` |
+| Unit 13 | arduous | `arduous.png` |
+| Unit 13 | overwhelmed | `overwhelmed.png` |
+| Unit 13 | protective | `protective.png` |
+| Unit 13 | predictable | `predictable.png` |
 | Unit 13 | fluctuate | `fluctuate.png` |
+| Unit 13 | ignored | `ignored.png` |
+| Unit 13 | avoided | `avoided.png` |
+| Unit 13 | impractical | `impractical.png` |
 | Unit 13 | accumulate | `accumulate.png` |
+| Unit 14 | despise | `despise.png` |
+| Unit 14 | provide | `provide.png` |
+| Unit 14 | overlook | `overlook.png` |
+| Unit 14 | creativity | `creativity.png` |
+| Unit 14 | excited about | `excited-about.png` |
+| Unit 14 | recollect | `recollect.png` |
+| Unit 14 | accurate | `accurate.png` |
+| Unit 14 | inadvertently | `inadvertently.png` |
+| Unit 14 | persist | `persist.png` |
+| Unit 14 | replace | `replace.png` |
+| Unit 15 | clinging to | `clinging-to.png` |
+| Unit 15 | blamed | `blamed.png` |
+| Unit 15 | gathering | `gathering.png` |
+| Unit 15 | hesitant | `hesitant.png` |
+| Unit 15 | neglected | `neglected.png` |
+| Unit 15 | inventive | `inventive.png` |
+| Unit 15 | satisfying | `satisfying.png` |
+| Unit 15 | possessions | `possessions.png` |
+| Unit 15 | coincidence | `coincidence.png` |
+| Unit 15 | impressive | `impressive.png` |
+| Unit 15 | latent | `latent.png` |
+| Unit 16 | momentous | `momentous.png` |
+| Unit 16 | decorate | `decorate.png` |
+| Unit 16 | fuse | `fuse.png` |
+| Unit 16 | carrying | `carrying.png` |
+| Unit 16 | awkward | `awkward.png` |
+| Unit 16 | elusive | `elusive.png` |
+| Unit 16 | involuntarily | `involuntarily.png` |
+| Unit 16 | reflect | `reflect.png` |
 | Unit 17 | dissolve | `dissolve.png` |
 | Unit 17 | fragile | `fragile.png` |
 | Unit 18 | transparent | `transparent.png` |

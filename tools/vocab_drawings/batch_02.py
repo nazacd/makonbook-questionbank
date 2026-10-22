@@ -34,6 +34,8 @@ def face(kind="smile", brows=None):
                    f'<path d="M-14 -182 H-2 M2 -182 H14" stroke="{INK}" stroke-width="3" stroke-linecap="round"/>')
     elif kind == "left":
         out.append(f'<circle cx="-12" cy="-180" r="3" fill="{INK}"/><circle cx="4" cy="-180" r="3" fill="{INK}"/>')
+    elif kind == "up":
+        out.append(f'<circle cx="-8" cy="-185" r="3" fill="{INK}"/><circle cx="8" cy="-185" r="3" fill="{INK}"/>')
     elif kind == "down":
         out.append(f'<circle cx="-8" cy="-175" r="3" fill="{INK}"/><circle cx="8" cy="-175" r="3" fill="{INK}"/>'
                    f'<path d="M-13 -179 H-3 M3 -179 H13" stroke="{INK}" stroke-width="2.5" stroke-linecap="round"/>')
@@ -48,7 +50,8 @@ def face(kind="smile", brows=None):
              "grin": None, "wide": None, "shut": "M-7 -166 Q0 -169 7 -166",
              "left": "M-10 -166 H2", "sidenm": None,
              "sly": "M-7 -167 Q1 -164 8 -170", "frown": "M-7 -163 Q0 -169 7 -163", "down": "M-5 -165 H5",
-             "cry": None, "angry": "M-7 -164 H7"}[kind]
+             "cry": None, "angry": "M-7 -164 H7",
+             "up": "M-6 -167 Q0 -163 6 -167"}[kind]
     if kind == "grin":
         out.append('<path d="M-9 -170 Q0 -158 9 -170 Z" fill="#fff" stroke="#264653" stroke-width="2.5" '
                    'stroke-linejoin="round"/>')
