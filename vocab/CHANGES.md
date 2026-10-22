@@ -10,7 +10,7 @@ Source: SAT MAKON's `sat_vocabularyword.csv` (1,250 rows, all active, exported 2
 - **Examples:** SAT MAKON's file has none, so all 1,220 are new: one sentence each, using the word itself or a simple inflection, with no names of real people.
 - **Part of speech:** added for every word, as its definition uses it. A participle that the definition treats as a verb form ("overshadowed by: made less important…") is a verb; one it treats as a description ("cherished: greatly valued and loved") is an adjective. A word with a preposition after it takes the part of speech of the word ("skepticism toward": noun).
 
-- **Pictures:** 280 words have one (see Pictures below); the others have no `image` field.
+- **Pictures:** 330 words have one (see Pictures below); the others have no `image` field.
 
 ## Lists
 
@@ -355,7 +355,7 @@ Unit 50 repeats 14 of Unit 49's words, in the same order and with the same defin
 
 ## Pictures
 
-280 words have an `image`: an 800×800 PNG in `vocab/images/` named after the word. The first 30 were picked as the easiest to show in a picture; the other 250 were drawn in batches of 50, each time the first 50 words of `vocab/image-prompts/prompts.jsonl`, in study order, that had none. They are flat illustrations drawn for this list (not photos and not from SAT MAKON), with no text in them, so the picture shows the meaning and the app shows the word.
+330 words have an `image`: an 800×800 PNG in `vocab/images/` named after the word. The first 30 were picked as the easiest to show in a picture; the other 300 were drawn in batches of 50, each time the first 50 words of `vocab/image-prompts/prompts.jsonl`, in study order, that had none. They are flat illustrations drawn for this list (not photos and not from SAT MAKON), with no text in them, so the picture shows the meaning and the app shows the word.
 
 | List | Word | Picture |
 |---|---|---|
@@ -629,8 +629,58 @@ Unit 50 repeats 14 of Unit 49's words, in the same order and with the same defin
 | Unit 27 | occupying | `occupying.png` |
 | Unit 27 | neutral | `neutral.png` |
 | Unit 27 | accidental | `accidental.png` |
+| Unit 27 | amusing | `amusing.png` |
+| Unit 28 | sensitive | `sensitive.png` |
+| Unit 28 | detects | `detects.png` |
+| Unit 28 | regret | `regret.png` |
+| Unit 28 | visible | `visible.png` |
+| Unit 28 | popularity | `popularity.png` |
+| Unit 28 | melodic | `melodic.png` |
+| Unit 28 | generous | `generous.png` |
+| Unit 28 | simulate | `simulate.png` |
 | Unit 28 | constrict | `constrict.png` |
+| Unit 28 | demonstrate | `demonstrate.png` |
+| Unit 29 | organized | `organized.png` |
+| Unit 29 | carefully | `carefully.png` |
+| Unit 29 | startle | `startle.png` |
+| Unit 29 | distant from | `distant-from.png` |
+| Unit 29 | full of | `full-of.png` |
+| Unit 29 | appreciated | `appreciated.png` |
+| Unit 29 | healthy | `healthy.png` |
+| Unit 29 | decisive | `decisive.png` |
+| Unit 29 | tolerance | `tolerance.png` |
+| Unit 29 | blended | `blended.png` |
+| Unit 30 | disseminate | `disseminate.png` |
+| Unit 30 | combined | `combined.png` |
+| Unit 30 | distressed | `distressed.png` |
+| Unit 30 | curiosity | `curiosity.png` |
+| Unit 30 | steady | `steady.png` |
+| Unit 30 | strengthen | `strengthen.png` |
+| Unit 30 | harbinger | `harbinger.png` |
+| Unit 30 | bold | `bold.png` |
+| Unit 30 | mystifying | `mystifying.png` |
+| Unit 30 | succumb | `succumb.png` |
+| Unit 31 | assertive | `assertive.png` |
+| Unit 31 | watched | `watched.png` |
+| Unit 31 | extensive | `extensive.png` |
+| Unit 31 | revise | `revise.png` |
 | Unit 31 | erratic | `erratic.png` |
+| Unit 31 | inspecting | `inspecting.png` |
+| Unit 31 | vigilance | `vigilance.png` |
+| Unit 31 | signaling | `signaling.png` |
+| Unit 31 | weaken | `weaken.png` |
+| Unit 31 | receive | `receive.png` |
+| Unit 32 | impede | `impede.png` |
+| Unit 32 | contracted | `contracted.png` |
+| Unit 32 | preserve | `preserve.png` |
+| Unit 32 | defied | `defied.png` |
+| Unit 32 | transformed | `transformed.png` |
+| Unit 32 | ineffective | `ineffective.png` |
+| Unit 32 | efficient | `efficient.png` |
+| Unit 32 | imitate | `imitate.png` |
+| Unit 32 | competent | `competent.png` |
+| Unit 32 | offended | `offended.png` |
+| Unit 33 | counteract | `counteract.png` |
 | Unit 33 | immense | `immense.png` |
 | Unit 36 | converge | `converge.png` |
 | Unit 38 | meager | `meager.png` |
