@@ -10,7 +10,7 @@ Source: SAT MAKON's `sat_vocabularyword.csv` (1,250 rows, all active, exported 2
 - **Examples:** SAT MAKON's file has none, so all 1,220 are new: one sentence each, using the word itself or a simple inflection, with no names of real people.
 - **Part of speech:** added for every word, as its definition uses it. A participle that the definition treats as a verb form ("overshadowed by: made less important…") is a verb; one it treats as a description ("cherished: greatly valued and loved") is an adjective. A word with a preposition after it takes the part of speech of the word ("skepticism toward": noun).
 
-- **Pictures:** 180 words have one (see Pictures below); the others have no `image` field.
+- **Pictures:** 230 words have one (see Pictures below); the others have no `image` field.
 
 ## Lists
 
@@ -355,7 +355,7 @@ Unit 50 repeats 14 of Unit 49's words, in the same order and with the same defin
 
 ## Pictures
 
-180 words have an `image`: an 800×800 PNG in `vocab/images/` named after the word. The first 30 were picked as the easiest to show in a picture; the other 150 were drawn in batches of 50, each time the first 50 words of `vocab/image-prompts/prompts.jsonl`, in study order, that had none. They are flat illustrations drawn for this list (not photos and not from SAT MAKON), with no text in them, so the picture shows the meaning and the app shows the word.
+230 words have an `image`: an 800×800 PNG in `vocab/images/` named after the word. The first 30 were picked as the easiest to show in a picture; the other 200 were drawn in batches of 50, each time the first 50 words of `vocab/image-prompts/prompts.jsonl`, in study order, that had none. They are flat illustrations drawn for this list (not photos and not from SAT MAKON), with no text in them, so the picture shows the meaning and the app shows the word.
 
 | List | Word | Picture |
 |---|---|---|
@@ -518,14 +518,64 @@ Unit 50 repeats 14 of Unit 49's words, in the same order and with the same defin
 | Unit 16 | elusive | `elusive.png` |
 | Unit 16 | involuntarily | `involuntarily.png` |
 | Unit 16 | reflect | `reflect.png` |
+| Unit 16 | valuable | `valuable.png` |
+| Unit 16 | delivered | `delivered.png` |
 | Unit 17 | dissolve | `dissolve.png` |
 | Unit 17 | fragile | `fragile.png` |
+| Unit 17 | tedious | `tedious.png` |
+| Unit 17 | collaboration | `collaboration.png` |
+| Unit 17 | limited | `limited.png` |
+| Unit 17 | overcome | `overcome.png` |
+| Unit 17 | hiding | `hiding.png` |
+| Unit 17 | superficial | `superficial.png` |
+| Unit 17 | accessible | `accessible.png` |
+| Unit 17 | conceal | `conceal.png` |
+| Unit 18 | forgotten | `forgotten.png` |
 | Unit 18 | transparent | `transparent.png` |
+| Unit 18 | postpone | `postpone.png` |
+| Unit 18 | distinctive | `distinctive.png` |
+| Unit 18 | haphazard | `haphazard.png` |
+| Unit 18 | harsh | `harsh.png` |
+| Unit 18 | drained | `drained.png` |
+| Unit 18 | alarmed | `alarmed.png` |
+| Unit 18 | discovery | `discovery.png` |
+| Unit 18 | supplied | `supplied.png` |
+| Unit 19 | distinguish | `distinguish.png` |
+| Unit 19 | saturated with | `saturated-with.png` |
+| Unit 19 | encompass | `encompass.png` |
+| Unit 19 | empty | `empty.png` |
+| Unit 19 | skilled in | `skilled-in.png` |
 | Unit 19 | abundant | `abundant.png` |
+| Unit 19 | arranged | `arranged.png` |
+| Unit 19 | disguise | `disguise.png` |
+| Unit 19 | biased | `biased.png` |
+| Unit 19 | dangerous | `dangerous.png` |
+| Unit 20 | reprieve | `reprieve.png` |
+| Unit 20 | tolerate | `tolerate.png` |
+| Unit 20 | confident | `confident.png` |
+| Unit 20 | defends | `defends.png` |
+| Unit 20 | counting | `counting.png` |
+| Unit 20 | pulled | `pulled.png` |
+| Unit 20 | invented | `invented.png` |
 | Unit 20 | homogeneous | `homogeneous.png` |
 | Unit 20 | hibernation | `hibernation.png` |
 | Unit 20 | diverge | `diverge.png` |
+| Unit 21 | genuine | `genuine.png` |
+| Unit 21 | secluded | `secluded.png` |
+| Unit 21 | meticulous | `meticulous.png` |
+| Unit 21 | judge | `judge.png` |
+| Unit 21 | protect | `protect.png` |
+| Unit 21 | shapeless | `shapeless.png` |
+| Unit 21 | rewards | `rewards.png` |
+| Unit 21 | delegate | `delegate.png` |
 | Unit 21 | isolate | `isolate.png` |
+| Unit 21 | lacking | `lacking.png` |
+| Unit 22 | confused | `confused.png` |
+| Unit 22 | rebellion | `rebellion.png` |
+| Unit 22 | guess | `guess.png` |
+| Unit 22 | innovation | `innovation.png` |
+| Unit 22 | extricated | `extricated.png` |
+| Unit 22 | preserving | `preserving.png` |
 | Unit 24 | obstructed | `obstructed.png` |
 | Unit 25 | multiplying | `multiplying.png` |
 | Unit 27 | heterogeneous | `heterogeneous.png` |
