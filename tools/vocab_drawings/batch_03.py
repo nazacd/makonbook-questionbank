@@ -468,17 +468,37 @@ def alter():
 
 
 def anticipating():
-    b = ['<rect y="320" width="400" height="80" fill="#d4a373"/>',
-         '<rect x="230" y="40" width="140" height="282" fill="#7f5539"/>',
-         '<rect x="244" y="54" width="112" height="120" rx="4" fill="#9c6b3c"/>',
-         '<rect x="244" y="190" width="112" height="120" rx="4" fill="#9c6b3c"/>',
-         '<circle cx="250" cy="196" r="8" fill="#e9c46a"/>',
-         '<rect x="220" y="318" width="160" height="8" fill="#6f4518"/>',
-         dog(120, 330, 1.25, "open", leash=True),
-         '<path d="M30 236 l-14 -8 M26 256 h-16 M34 216 l-10 -12" stroke="#6c757d" stroke-width="3" '
-         'stroke-linecap="round"/>',
-         '<path d="M126 160 l-4 -16 M140 158 l4 -16" stroke="#6c757d" stroke-width="3" stroke-linecap="round"/>',
-         heart(190, 100, 12), heart(210, 70, 8, "#f4a261")]
+    back = (f'<circle cx="0" cy="-178" r="23" fill="#5c4033"/>'
+            f'<circle cx="-23" cy="-176" r="5" fill="{SKIN[1]}"/><circle cx="23" cy="-176" r="5" fill="{SKIN[1]}"/>')
+    b = ['<rect y="350" width="400" height="50" fill="#d4a373"/>',
+         # the window, with a car on its way up the road
+         '<rect x="150" y="70" width="230" height="210" fill="#bde0fe"/>',
+         '<circle cx="330" cy="110" r="20" fill="#ffd166"/>',
+         '<path d="M150 200 Q240 170 380 196 V280 H150 Z" fill="#a7c957"/>',
+         '<path d="M318 184 Q300 206 324 232 Q344 256 318 280 H364 Q380 252 352 228 Q330 206 330 184 Z" fill="#adb5bd"/>',
+         '<g transform="translate(336 236) scale(1.2)"><rect x="-12" y="-8" width="24" height="12" rx="3" fill="#e63946"/>'
+         '<rect x="-7" y="-14" width="14" height="8" rx="2" fill="#e63946"/>'
+         '<circle cx="-6" cy="5" r="3" fill="#343a40"/><circle cx="6" cy="5" r="3" fill="#343a40"/></g>',
+         '<path d="M318 214 l-10 -8 M314 230 h-14" stroke="#fff" stroke-width="3" stroke-linecap="round"/>',
+         bush(180, 196, 14), bush(372, 196, 10),
+         '<rect x="144" y="64" width="242" height="222" fill="none" stroke="#fff" stroke-width="12"/>',
+         '<path d="M265 64 V286 M144 170 H386" stroke="#fff" stroke-width="8"/>',
+         '<rect x="134" y="280" width="262" height="14" rx="3" fill="#e9d8c4"/>',
+         # the wall calendar: every day before the big one already gone
+         '<rect x="20" y="80" width="104" height="120" rx="4" fill="#fff"/>',
+         '<rect x="20" y="80" width="104" height="24" rx="4" fill="#e63946"/>',
+         '<circle cx="46" cy="80" r="4" fill="#495057"/><circle cx="98" cy="80" r="4" fill="#495057"/>']
+    for k in range(16):
+        x, y = 28 + (k % 4) * 23, 112 + (k // 4) * 21
+        fill = "#adb5bd" if k < 10 else "#f1f3f5"
+        b.append(f'<rect x="{x}" y="{y}" width="19" height="17" rx="2" fill="{fill}"/>')
+    b.append(heart(39 + 2 * 23, 120 + 2 * 21, 7))
+    b += [shadow(256, 374, 34),
+          person(256, 372, .9, SKIN[1], "#2a9d8f", "#457b9d", "#5c4033", "none", tiptoe=True,
+                 larm=((-16, 30), (-12, 56)), rarm=((16, 30), (12, 56)), extra=back),
+          f'<circle cx="224" cy="288" r="7.5" fill="{SKIN[1]}"/><circle cx="288" cy="288" r="7.5" fill="{SKIN[1]}"/>',
+          '<path d="M206 196 l-12 -8 M210 178 l-8 -12 M306 196 l12 -8 M302 178 l8 -12" stroke="#e76f51" '
+          'stroke-width="4" stroke-linecap="round"/>']
     return svg(b, "#fdf0d5")
 
 
