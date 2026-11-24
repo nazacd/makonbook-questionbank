@@ -61,3 +61,26 @@ Per question ≈ 34,469 tokens, ≈ $0.125 at API list prices (90/10 input/outpu
 ## Notes from the session
 
 english-m1-a transcription needed 1 re-run (unbalanced bold marker in english-m1-09); explain math-m2-a needed 1 re-run (wrong skill tag on math-m2-08).
+
+## Fixes
+
+Every question that isn't green, corrected for students; teachers approve or deny each fix.
+
+- **Math M2 #15 (csv 1056)** (yellow, redrawn, high): The text and key are right; the original screenshot also contains the stem sentence, so the student saw it twice, and the triangle is redrawn exactly (same labels and right angle) without the duplicated text.
+- **Math M2 #22 (csv 1063)** (red, corrected, invented, high): Choice C (sides QR and NO) was also sufficient, so it is replaced with an angle fact that is already determined and gives no size information; choice B's grammar is fixed to "The measures of angles P and M".
+- **R&W M1 #2 (csv 1280)** (yellow, no change, high): No change needed: the solver was unsure, but the text sets up comfort as the goal, so "more unsettled than soothed" is clearly the only logical completion and the key A is right.
+- **R&W M1 #3 (csv 1281)** (yellow, invented, medium): "conventions" is close enough to "customs" that a strong student could defend it for informal social practices, so it is replaced with "statutes", a plausible but clearly wrong word (shaming and exclusion are not formal laws).
+- **R&W M1 #5 (csv 1283)** (red, corrected, high): The bank's key D (celebrating the impact on civil rights) is unsupported by the neutral two-sentence text, so the key is set to A as the review found, with a new explanation for A.
+- **R&W M1 #8 (csv 1286)** (red, invented, high): A and C both partly fit (A matched "sorry I could not travel both" better than key C, whose "impact on their journey" is not in the excerpt), so I rewrote C to state the excerpt's idea and made A a clear misreading (regretting a choice not yet made), keeping the key at C.
+- **R&W M1 #9 (csv 1287)** (yellow, corrected, restored, high): Removed the stray "**" after the underlined sentence in Text 1 and restored the missing leading "A" in choice A.
+- **R&W M1 #11 (csv 1289)** (yellow, no change, high): No change needed: the solvers were only medium-confident, but C is the only quotation showing both longing for lasting love and human transience ("fleeting shadows"), and the text is clean.
+- **R&W M1 #20 (csv 1298)** (yellow, no change, high): No change needed: the question is clear and key B is right; the solver was only medium-confident.
+- **R&W M1 #23 (csv 1301)** (yellow, no change, high): No change needed: the question is clear and key B is right; the solver was only medium-confident.
+- **R&W M1 #26 (csv 1304)** (red, invented, medium): The original B (an ungrammatical size fact plus an unsupported 'single slab' claim) did not highlight anything surprising while D's 'walking' mystery did, so I rewrote B to state from the notes that production and transport still baffle scientists, and replaced D with a non-surprising production fact (tuff) so B is the only answer.
+- **R&W M2 #1 (csv 1306)** (yellow, no change, high): No change needed: the solver was only moderately sure, but the contrast with 'the absolute right to bear arms' makes 'regulations' clearly the one right word and the key is C.
+- **R&W M2 #3 (csv 1308)** (yellow, no change, high): No change needed: the next sentence calls social capital 'an important resource,' which pins the blank to 'resources'; the key C is right and the question is clear.
+- **R&W M2 #4 (csv 1309)** (yellow, no change, high): No change needed: the 'as a social construct, rather than a biological fact' frame requires 'viewed'; the key B is right and the question is clear.
+- **R&W M2 #7 (csv 1312)** (yellow, no change, high): No change needed: 'revolutionized' is the only choice that takes 'the way people interact' as an object and describes a broad positive change before the 'However'; the key B is right.
+- **R&W M2 #8 (csv 1313)** (red, invented, high): Rewrote key C so it follows directly from Text 2's finding (the concern may be unfounded for type 2 diabetes) instead of speculating about further research, and rewrote A so it contradicts the study instead of adding unsupported claims about training and oversight; the passage matches the original screenshot.
+- **R&W M2 #12 (csv 1317)** (yellow, no change, medium): No change needed: the solvers were unsure, but only D sets an explicit negative feeling toward the city ("a cacophony that drowns the soul") against longing for the island "that made me whole"; A, B and C mainly voice nostalgia while describing the city neutrally.
+- **R&W M2 #22 (csv 1327)** (yellow, no change, high): No change needed: the question is clear and the key is right, since the illusion exists in the present ("the armor is empty"), so the suit is made to look as if it "is" inhabited.
