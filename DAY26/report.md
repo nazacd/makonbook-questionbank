@@ -57,3 +57,25 @@ Verdicts: key_correct 93, key_wrong 4, broken 1. Adjudicated: 19.
 | **Subagents** | | 44 | **3,481,090** | **$12.72** |
 
 Per question ≈ 35,521 tokens, ≈ $0.130 at API list prices (90/10 input/output split assumed; the main session is not included).
+
+## Fixes
+
+Every question that isn't green, corrected for students; teachers approve or deny each fix.
+
+- **Math M2 #11 (csv 1318)** (yellow, no change, high): No change needed: the stem, dot plot and choices match the original screenshots, and the key D is right; the second solver only miscounted the middle values.
+- **Math M2 #15 (csv 1322)** (red, corrected, high): Corrected the grid-in answer from 270 to 240 (accepted list and explanation): the marked points (-8, 12) and (0, 1) give slope -11/8, not -11/9; the stem and graph match the original.
+- **Math M2 #20 (csv 1327)** (yellow, corrected, high): Removed the repeated word in "in in inches" (the typo is also in the original screenshot); choices and key match the original.
+- **R&W M1 #5 (csv 1665)** (red, corrected, restored, high): Added the missing final period and changed "bat-like *Archaeopteryx*" to "bat-like *Ambopteryx*" (Archaeopteryx is not bat-like; the bank explanation names Ambopteryx, the dinosaur the source text describes), as the review proposed.
+- **R&W M1 #10 (csv 1670)** (yellow, no change, high): No change needed: the passage, stem and choices are clear and complete, and key B is right; the flag was only one solver's medium confidence.
+- **R&W M1 #13 (csv 1673)** (red, corrected, high): Removed the stray quotation marks wrapping the passage, which are a screenshot artifact and not part of the text.
+- **R&W M1 #17 (csv 1677)** (red, restored, high): Removed the dash after the blank: it made every choice ungrammatical ("catching—an in-person glimpse"), and the choices show the intended sentence is "goal: catching an in-person glimpse"; explanation rewritten.
+- **R&W M1 #18 (csv 1678)** (yellow, no change, high): No change needed: the solver was only moderately sure, but the question is clear and key A is correct.
+- **R&W M1 #20 (csv 1680)** (yellow, no change, high): No change needed: the question is clear, key B is correct, and the current explanation already quotes B correctly.
+- **R&W M2 #5 (csv 2260)** (yellow, no change, high): No change needed: the text matches the original screenshot, including the underlined portion, and key C is correct.
+- **R&W M2 #9 (csv 2264)** (yellow, no change, high): No change needed: the solver was unsure, but the passage, choices and key are clear and complete.
+- **R&W M2 #14 (csv 2269)** (red, corrected, high): Set the key to A ("its") per the review's key_wrong verdict; the singular antecedent "the Karelian Republic" owns the peer republics. Updated the explanation to match key A.
+- **R&W M2 #15 (csv 2270)** (red, corrected, high): Set the key to D ("containing") per the review's key_wrong verdict; the blank must be a participle parallel with "enacted." Updated the explanation to match key D.
+- **R&W M2 #16 (csv 2271)** (yellow, corrected, high): Corrected the name "Jose Limón" to "José Limón" (consistent with "Limón" in the same sentence); the question and key are otherwise fine.
+- **R&W M2 #18 (csv 2273)** (red, corrected, high): Set the key to A ("pristine, though") per the review's key_wrong verdict; the semicolon after the blank is already printed. Updated the explanation to match key A.
+- **R&W M2 #23 (csv 2278)** (yellow, no change, high): No change needed: the solver was only moderately sure, but the text is clear and the key B is right; the last sentence adds a second thing the poem does.
+- **R&W M2 #24 (csv 2279)** (yellow, no change, high): No change needed: the transcription matches the original screenshot word for word and the key A is right.
