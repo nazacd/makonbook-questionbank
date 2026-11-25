@@ -57,3 +57,17 @@ Per question ≈ 32,868 tokens, ≈ $0.116 at API list prices (90/10 input/outpu
 ## Notes from the session
 
 An explain agent (english-m1-c) reported that it re-ran a shared scratch script and regenerated the explain output of math-m2-a from another agent's script; the content should be unchanged but a teacher may want to spot-check math-m2-a explanations.
+
+## Fixes
+
+Every question that isn't green, corrected for students; teachers approve or deny each fix.
+
+- **Math M1 #22 (csv 1671)** (yellow, corrected, high): The question and figure match the original and the key is right; added the valid entry ".866" to the accepted list and updated the explanation to list every accepted form.
+- **R&W M1 #13 (csv 2032)** (yellow, corrected, high): Changed the single quotes around 'Sad but True' in the passage to double quotes to match the choices; the question is otherwise clear and the key is right.
+- **R&W M1 #14 (csv 2034)** (yellow, corrected, high): Lowercased the first word of choices A, B and D so they complete the sentence after "imply that," and made the blank the standard six underscores.
+- **R&W M1 #25 (csv 2068)** (yellow, restored, high): Restored the dropped opening word "A" in choices A and D, which began mid-sentence.
+- **R&W M2 #3 (csv 2087)** (yellow, restored, high): Restored the missing article "a" in choices A and C so all four choices fit "is largely ______ of the fact" and match the explanation's "a consequence."
+- **R&W M2 #12 (csv 2102)** (yellow, no change, high): No change needed: the text and graph match the original, the graph is clear, and the current explanation already respects the assumption that P1's ratings were equal.
+- **R&W M2 #13 (csv 2103)** (yellow, corrected, medium): Italicized the novel title *My Name Is Red* in all four choices to match the passage, and rewrote the explanation to give clear reasons for each choice.
+- **R&W M2 #21 (csv 2121)** (yellow, corrected, high): Changed the five-underscore blank to the standard six and removed the period after it, since every choice already ends with a period.
+- **R&W M2 #23 (csv 2122)** (yellow, corrected, medium): Changed the five-underscore blank to the standard six; the question is otherwise fine and the key stands.
