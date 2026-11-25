@@ -55,3 +55,18 @@ Verdicts: key_correct 96, broken 2. Adjudicated: 15.
 | **Subagents** | | 43 | **3,221,638** | **$11.64** |
 
 Per question ≈ 32,873 tokens, ≈ $0.119 at API list prices (90/10 input/output split assumed; the main session is not included).
+
+## Fixes
+
+Every question that isn't green, corrected for students; teachers approve or deny each fix.
+
+- **Math M1 #10 (csv 1885)** (yellow, no change, high): No change needed: the figure, stem and choices match the original, and the key is right; the review flagged it only for a solver's medium confidence.
+- **Math M2 #4 (csv 1902)** (red, invented, high): Replaced duplicate choice D (identical to C) with a new distractor, and changed "positive" to "nonzero" because the equation's negative sign makes v, w and x impossible to all be positive.
+- **R&W M1 #7 (csv 2348)** (yellow, corrected, high): Changed the italicized final sentence to underlined so it matches the stem's reference to "the underlined sentence."
+- **R&W M1 #8 (csv 2349)** (yellow, restored, high): Restored the missing underline on the final sentence (the one the explanation and key describe) and italicized the play title.
+- **R&W M1 #13 (csv 2354)** (yellow, no change, high): No change needed: the cropped title is cosmetic, and the bars, axis and legend needed to answer are fully readable.
+- **R&W M1 #23 (csv 2364)** (yellow, no change, high): No change needed: one solver was only moderately confident, but the passage, choices and key are clear and correct.
+- **R&W M2 #6 (csv 2374)** (yellow, restored, high): Underlined the first sentence (The Times's view), which the stem refers to but which lost its underline in transcription (the screenshot also lacks it).
+- **R&W M2 #12 (csv 2380)** (yellow, no change, high): No change needed: one solver was only moderately confident, but the question is clear and key B is right.
+- **R&W M2 #16 (csv 2384)** (red, restored, high): Removed the stray period, closing quotation mark and capital "In" after the blank, since every choice supplies the closing quotation mark and the sentence must continue into "in 1960".
+- **R&W M2 #20 (csv 2388)** (yellow, no change, high): No change needed: one solver chose B, but B, A and D all create comma splices or fragments, and key C is correct.
