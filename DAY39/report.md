@@ -54,3 +54,19 @@ Verdicts: key_correct 96, key_wrong 1, broken 1. Adjudicated: 12.
 | **Subagents** | | 41 | **3,206,161** | **$11.27** |
 
 Per question ≈ 32,715 tokens, ≈ $0.115 at API list prices (90/10 input/output split assumed; the main session is not included).
+
+## Fixes
+
+Every question that isn't green, corrected for students; teachers approve or deny each fix.
+
+- **R&W M1 #5 (csv 2132)** (yellow, corrected, high): Added the missing article to choices A and D so every choice fits "is largely ______ of the fact" grammatically and grammar no longer points students toward B or C.
+- **R&W M1 #8 (csv 2135)** (yellow, no change, high): No change needed: the solver was only moderately sure, but the passage is clear and key A is right.
+- **R&W M1 #11 (csv 2138)** (yellow, restored, high): Restored the missing conclusion sentence ending in a blank so the stem's "complete the conclusion" has something to complete, and italicized the species name in the passage; the table already matches the screenshot.
+- **R&W M1 #24 (csv 2150)** (yellow, no change, high): No change needed: the solver was only moderately sure, but the passage is clear and key C is right.
+- **R&W M2 #1 (csv 2154)** (yellow, corrected, high): Replaced the straight single quotes around 'world' with standard double quotation marks; the stray quotes the review mentions around the passage are not in our version, and nothing else needed changing.
+- **R&W M2 #3 (csv 2156)** (red, corrected, high): Key changed from the bank's D to B (ambiguity), as the review found, with the explanation rewritten for key B; our passage already has no stray quotation marks.
+- **R&W M2 #8 (csv 2161)** (yellow, no change, high): No change needed: the passage matches the original screenshot word for word, and the question is clear with key A correct; the solver was only moderately confident.
+- **R&W M2 #11 (csv 2164)** (yellow, no change, high): No change needed: the graph is clear and readable, the text matches it, and the current explanation already gives the correct reasoning for key B.
+- **R&W M2 #13 (csv 2166)** (yellow, corrected, high): Formatting only: italicized the species names as the SAT does and added the missing period after the final blank; the content and key C are unchanged.
+- **R&W M2 #19 (csv 2172)** (red, restored, invented, medium): Restored the second clause's subject: the bank text repeated "conservation, though" after the blank where "efficiency" belongs; changed distractor C from "conservation, though" (which could be read as a grammatical concessive clause) to "conservation though," so only D works, and rewrote the explanation.
+- **R&W M2 #22 (csv 2175)** (yellow, no change, high): No change needed: the solvers were unsure, but the passage and choices are clean, the key D is right, and the current explanation already explains that the last sentence gives the overall tally.
