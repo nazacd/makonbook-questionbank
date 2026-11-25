@@ -54,3 +54,25 @@ Verdicts: key_correct 97, key_wrong 1. Adjudicated: 18.
 | **Subagents** | | 43 | **3,352,565** | **$12.17** |
 
 Per question ≈ 34,209 tokens, ≈ $0.124 at API list prices (90/10 input/output split assumed; the main session is not included).
+
+## Fixes
+
+Every question that isn't green, corrected for students; teachers approve or deny each fix.
+
+- **Math M1 #9 (csv 1746)** (yellow, restored, corrected, high): Added the missing "Data Set X" title above the first table and changed "the table shown" to "the tables shown", since there are two tables.
+- **Math M1 #16 (csv 1752)** (yellow, redrawn, high): Redrew the blurry graph, which had stray dashed lines from the screenshot crossing the grid, using the readable points (0, 300) and (1, 750) on the same axes and grid; text unchanged.
+- **Math M1 #21 (csv 1757)** (yellow, no change, high): No change needed: the transcription matches the original and the key is right.
+- **Math M2 #22 (csv 1781)** (yellow, corrected, high): Put the costs fully in math as \(\$46n\) and \(\$23n\) so a bare $ does not sit next to a math delimiter; wording and choices match the original.
+- **R&W M1 #12 (csv 2213)** (yellow, no change, high): No change needed: the question is clear and the key is right; the review only flagged solver uncertainty.
+- **R&W M1 #14 (csv 2215)** (yellow, no change, high): No change needed: the table transcription matches the original screenshot exactly and the key is right; the solver was only unsure.
+- **R&W M1 #15 (csv 2216)** (yellow, no change, high): No change needed: the text is clear and complete and key A is right; the solver was only unsure.
+- **R&W M1 #23 (csv 2224)** (yellow, no change, high): No change needed: the question is clear and key A is right; one solver's disagreement does not hold up.
+- **R&W M1 #24 (csv 2225)** (yellow, no change, high): No change needed: the question is clear and key C is right; the solver was only unsure.
+- **R&W M2 #3 (csv 2231)** (red, corrected, high): Changed the key from A to D per the key_wrong verdict (the street art adds to the museum's collection, so "supplement" is the precise word) and rewrote the explanation for the new key.
+- **R&W M2 #5 (csv 2233)** (yellow, no change, high): No change needed: the transcription and underlining match the original screenshot, and the key is right; the solver was only unsure.
+- **R&W M2 #10 (csv 2238)** (yellow, no change, high): No change needed: the text matches, the graph is clear and readable, and the key is right; the solver was only unsure.
+- **R&W M2 #14 (csv 2242)** (yellow, corrected, high): Corrected the typo "in the region about otherwise unrelated" to "in the region but otherwise unrelated".
+- **R&W M2 #19 (csv 2247)** (yellow, no change, high): No change needed: the question is clear and the key is right; the solver was only unsure.
+- **R&W M2 #20 (csv 2248)** (yellow, no change, high): No change needed: the question is clear and the key is right; the solver was only unsure.
+- **R&W M2 #22 (csv 2250)** (yellow, invented, high): Replaced the key's wording "Then," with "Instead," (key letter unchanged) because "Then," only weakly fits and led a solver to prefer "With this in mind,"; "Instead," clearly signals the shredded paper replaced the retired ticker tape.
+- **R&W M2 #26 (csv 2254)** (yellow, no change, high): No change needed: the transcription matches the screenshot word for word, and the key C is the only choice that presents the findings without defining a concept the audience already knows.
