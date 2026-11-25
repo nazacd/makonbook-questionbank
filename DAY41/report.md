@@ -54,3 +54,17 @@ Verdicts: key_correct 95, key_wrong 2, broken 1. Adjudicated: 13.
 | **Subagents** | | 43 | **3,189,411** | **$11.53** |
 
 Per question ≈ 32,545 tokens, ≈ $0.118 at API list prices (90/10 input/output split assumed; the main session is not included).
+
+## Fixes
+
+Every question that isn't green, corrected for students; teachers approve or deny each fix.
+
+- **Math M1 #21 (csv 1804)** (yellow, corrected, high): Renumbered the statements from 1/2 to I/II so they match the answer choices; the math matches the original screenshot.
+- **R&W M1 #15 (csv 2301)** (yellow, no change, high): No change needed: the solver was only moderately sure, but the text is complete and the key is right.
+- **R&W M1 #21 (csv 2307)** (yellow, no change, high): No change needed: the sentence and choices are clear and the key is right.
+- **R&W M2 #2 (csv 2315)** (yellow, no change, high): No change needed: one solver disagreed, but the concession 'may seem ______, but ... risks disregarding' clearly calls for a word meaning convincing, and the key is right.
+- **R&W M2 #10 (csv 2324)** (red, corrected, high): Changed the key from A to C per the review's key_wrong verdict and wrote the explanation for C into changes.
+- **R&W M2 #12 (csv 2326)** (red, invented, medium): The premise "Assuming participant P6 gave equal ratings" made every choice wrong, so I replaced it with a claim the graph supports and rewrote A-C to compare how closely the model matched P6's ratings for the two styles, keeping D as an unsupported distractor and the key as A.
+- **R&W M2 #18 (csv 2332)** (yellow, no change, high): No change needed: the text after the blank is a noun phrase explaining "phenomenon," so only the colon works, and the key C is right.
+- **R&W M2 #19 (csv 2333)** (red, corrected, high): Changed the key from D to B as the review found (the text after the blank is a dependent "since" clause, so only commas around "however" work) and wrote the explanation for key B.
+- **R&W M2 #24 (csv 2338)** (yellow, no change, medium): No change needed: one solver disagreed, but the second sentence follows from the first (international handball became a medal event, regional kaatsen appeared only once), so "Accordingly" is the only logical transition and the key B is right.
