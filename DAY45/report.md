@@ -65,3 +65,26 @@ Per question ≈ 35,070 tokens, ≈ $0.128 at API list prices (90/10 input/outpu
 
 explain math-m1-a failed its check once (a skill tag outside its domain); re-run once, then passed.
 The protocol changed during the session (Fix step, original.jsonl); DAY45 follows the new one.
+
+## Fixes
+
+Every question that isn't green, corrected for students; teachers approve or deny each fix.
+
+- **Math M1 #8 (csv 1929)** (yellow, no change, high): No change needed: the crop only clips the top of the "30" label, and the 5-unit scale, the points and the line of best fit are all clearly readable, so the question is answerable and the key is right.
+- **Math M2 #17 (csv 1960)** (yellow, no change, high): No change needed: the transcription matches the original, and the graph clearly shows line g through (-10, 12) and (0, 1), which is all the question needs.
+- **R&W M1 #5 (csv 2453)** (yellow, corrected, high): Added the missing articles to A and C so all four choices fit the sentence grammatically, and rewrote the muddled explanation.
+- **R&W M1 #6 (csv 2454)** (red, corrected, high): Set the key to D, as the review found: the text explains why Bloom praises Little, Big and never discusses what inspired Crowley (the old key C).
+- **R&W M1 #7 (csv 2455)** (red, corrected, high): Set the key to C, as the review found: the text names an approach, lists its benefits and mentions a study that used it, and it never traces a development or suggests future projects (the old key D).
+- **R&W M1 #8 (csv 2456)** (red, corrected, high): Set the key to D as the review found; the bank's key C reverses the text, which says people crowd into cities and long for gas-lit streets. The text matches the original screenshot.
+- **R&W M1 #9 (csv 2457)** (red, corrected, high): Set the key to C as the review found; the bank's key D claims equal numbers of borrowed words, which the text never counts. The text matches the original screenshot.
+- **R&W M1 #10 (csv 2458)** (red, corrected, high): Set the key to D as the review found; the bank's key B makes a prediction the text never makes. The text matches the original screenshot.
+- **R&W M1 #12 (csv 2460)** (red, corrected, high): Set the key to B as the review found (D has no narrow-headed comparison) and restored the missing leading article "A" in all four choices.
+- **R&W M1 #13 (csv 2461)** (red, corrected, high): Set the key to D as the review found (A shows only Avey, not the narrator's attitude) and italicized the novel title in the stem.
+- **R&W M1 #17 (csv 2464)** (yellow, no change, high): No change needed: the text matches the screenshot, and one solver's disagreement came from missing the comma splice in A.
+- **R&W M1 #21 (csv 2467)** (yellow, no change, high): No change needed: the transcription matches the screenshot exactly and the key is right.
+- **R&W M2 #5 (csv 2477)** (yellow, no change, high): No change needed: the poem matches the screenshot line for line and the key is clearly right; the solver's medium confidence did not reflect a flaw.
+- **R&W M2 #11 (csv 2483)** (yellow, no change, high): No change needed: the graph is clear and readable, the text matches the screenshot, and the key is right.
+- **R&W M2 #13 (csv 2485)** (red, corrected, high): Italicized the work's title Instant Mural in choices A, B and D to match the passage; the record's key is already D, the review's corrected key, and the explanation already supports D.
+- **R&W M2 #17 (csv 2489)** (yellow, no change, high): No change needed: the text matches the original screenshot, and although one solver disagreed, the question is clear and key A is right.
+- **R&W M2 #19 (csv 2491)** (yellow, no change, high): No change needed: the text matches the original screenshot, the question is clear, key C is right, and the current explanation already argues from subject-verb agreement.
+- **R&W M2 #21 (csv 2493)** (yellow, no change, high): No change needed: the text matches the original screenshot, the question is clear, key C is right, and the current explanation already describes the concession correctly.
